@@ -29,5 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## pb with adding fire:  
 npm install inquirer-autocomplete-prompt@^3.0.1
 
-## tuto 
+## tuto 2
 https://medium.com/@christianaxtmn/adding-firebase-to-angular-17-5c5a7cf4aba8
