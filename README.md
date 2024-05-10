@@ -25,3 +25,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## pb with adding fire:  
+npm install inquirer-autocomplete-prompt@^3.0.1
+
+## tuto 
+https://medium.com/@christianaxtmn/adding-firebase-to-angular-17-5c5a7cf4aba8
