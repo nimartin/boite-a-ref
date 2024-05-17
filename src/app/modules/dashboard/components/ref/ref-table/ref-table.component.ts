@@ -3,6 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Ref } from '../../../models/ref';
 import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: '[app-ref-table]',
@@ -11,12 +12,12 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
   templateUrl: './ref-table.component.html',
   styleUrl: './ref-table.component.scss'
 })
-export class RefTableComponent implements OnInit{
+export class RefTableComponent {
   public refs: Ref[] = []
   firestore = inject(Firestore);
   showRefs:boolean = false
 
-  constructor() { 
+  constructor(private router: Router) { 
     this.loadScript('https://www.tiktok.com/embed.js').then(status => {
       if (status === 'loaded') {
         this.showRefs = true;
@@ -28,7 +29,8 @@ export class RefTableComponent implements OnInit{
     getDocs(collection(this.firestore, "ref")).then((response) => {
       console.log(response.docs)
       response.docs.forEach((document: any) => {
-        this.refs.push(document.data() as Ref)
+        let ref = { id: document.id, ...document.data() } as Ref
+        this.refs.push(ref);
       });
       this.loadScript('https://www.tiktok.com/embed.js');
       console.log(this.refs);
@@ -60,7 +62,8 @@ export class RefTableComponent implements OnInit{
     });
   }
 
-  ngOnInit() {
-    
+  navigateToRef(ref: Ref){
+    console.log(ref.id)
+    this.router.navigate(['ref', ref.id]);
   }
 }

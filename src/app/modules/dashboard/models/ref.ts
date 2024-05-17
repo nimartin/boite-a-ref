@@ -1,5 +1,5 @@
 export interface Ref {
-    id: number;
+    id: string;
     title: string;
     memeAuthor: string;
     memeRef: string;

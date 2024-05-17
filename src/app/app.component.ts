@@ -1,7 +1,6 @@
 import { Component, ElementRef, QueryList, ViewChildren, inject } from '@angular/core';
 import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 import { RouterOutlet } from '@angular/router';
-import { zgeg } from './zgeg.interface';
 import { Ref } from './modules/dashboard/models/ref';
 
 @Component({
