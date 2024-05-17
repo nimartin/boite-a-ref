@@ -1,0 +1,8 @@
+.ref-container{
+    display: flex;
+    justify-content: space-between;
+    .ref{
+        display: block;
+        width: fit-content;
+    }
+}

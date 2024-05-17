@@ -2,6 +2,7 @@ import { Component, ElementRef, QueryList, ViewChildren, inject } from '@angular
 import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 import { RouterOutlet } from '@angular/router';
 import { zgeg } from './zgeg.interface';
+import { Ref } from './modules/dashboard/models/ref';
 
 @Component({
   selector: 'app-root',
@@ -15,31 +16,13 @@ export class AppComponent {
 
   firestore = inject(Firestore);
 
-  zgegs : zgeg[] = [];
+  refs : Ref[] = [];
 
 
   constructor(private elementRef: ElementRef) { }
 
-  ngAfterViewInit() {
-    this.waitForElementAndClick();
-  }
-
-  waitForElementAndClick() {
-    const targetElement = this.elementRef.nativeElement.querySelector('[data-e2e="Player-index-ControllerToggleSound"]');
-    if (targetElement) {
-      targetElement.click();
-    } else {
-      //setTimeout(() => this.waitForElementAndClick(), 100); // Réessayer après 100ms
-    }
-  }
 
   ngOnInit() {
-    getDocs(collection(this.firestore, "zgegs")).then((response) => {
-      console.log(response.docs)
-      response.docs.forEach((document: any) => {
-        this.zgegs.push(document.data() as zgeg)
-      });
-      console.log(this.zgegs);
-    });
+    
   }
 }
