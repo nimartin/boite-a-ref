@@ -1,0 +1,92 @@
+<!-- login form -->
+<div class=""></div>
+<div class="flex mx-auto px-4 py-4 sm:px-8 lg:container ">
+  <form class="my-10 space-y-6 " [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="">
+      <h2 class="mb-1 text-3xl font-semibold text-foreground">Vous voulez ajouter une <span
+          class="text-primary">ref</span> ? </h2>
+      <p class="text-sm text-muted-foreground">Contribuez à notre bibliothèque et indiquez nous quelle vidéo ajouter.
+      </p>
+    </div>
+
+    <div
+      class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-muted after:mt-0.5 after:flex-1 after:border-t after:border-muted">
+    </div>
+
+    <div class="space-y-3 text-left">
+      <div class="form__group">
+        <div class="relative">
+          <input type="text" id="title" [ngClass]="{ 'is__invalid-input': submitted && controls['title'].errors }"
+            class="peer block" placeholder=" " formControlName="title" />
+          <label for="title"
+            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+            Titre de la ref (ex: Mbappe - Il va pas la chercher)
+          </label>
+        </div>
+        <div *ngIf="submitted && controls['title'].errors" class="is__invalid-error">
+          <div *ngIf="controls['title'].errors['required']">Champs obligatoire</div>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <div class="relative">
+          <input type="text" id="memeAuthor"
+            [ngClass]="{ 'is__invalid-input': submitted && controls['memeAuthor'].errors }" class="peer block"
+            placeholder=" " formControlName="memeAuthor" />
+          <label for="memeAuthor"
+            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+            Auteur de la ref (ex: Mbappe)
+          </label>
+        </div>
+        <div *ngIf="submitted && controls['memeAuthor'].errors" class="is__invalid-error">
+          <div *ngIf="controls['memeAuthor'].errors['required']">Champs obligatoire</div>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <div class="relative">
+          <input type="text" id="memeRef" [ngClass]="{ 'is__invalid-input': submitted && controls['memeRef'].errors }"
+            class="peer block" placeholder=" " formControlName="memeRef" />
+          <label for="memeRef"
+            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+            La ref culte (ex: Il va pas la chercher)
+          </label>
+        </div>
+        <div *ngIf="submitted && controls['memeRef'].errors" class="is__invalid-error">
+          <div *ngIf="controls['memeRef'].errors['required']">Champs obligatoire</div>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <div class="relative">
+          <input type="text" id="tiktokVideoCite"
+            [ngClass]="{ 'is__invalid-input': submitted && controls['tiktokVideoCite'].errors }" class="peer block"
+            placeholder=" " formControlName="tiktokVideoCite" />
+          <label for="tiktokVideoCite"
+            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+            Le lien de la vidéo (ex: https://tiktok.com/user/video/1234)
+          </label>
+        </div>
+        <div *ngIf="submitted && controls['tiktokVideoCite'].errors" class="is__invalid-error">
+          <div *ngIf="controls['tiktokVideoCite'].errors['required']">Champs obligatoire</div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="mb-2 flex items-center justify-end space-x-3">
+
+      <app-button routerLink="/auth/forgot-password" impact="none" tone="primary" shape="rounded" size="small">
+        Besoin d'aide? Consultez le tutoriel
+      </app-button>
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+      <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Envoyer la ref</app-button>
+    </div>
+
+
+  </form>
+</div>

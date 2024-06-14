@@ -44,9 +44,9 @@ export class Menu {
       separator: true,
       items: [
         {
-          icon: 'assets/icons/heroicons/outline/download.svg',
-          label: 'Download',
-          route: '/download',
+          icon: 'assets/icons/heroicons/outline/upload.svg',
+          label: 'Upload',
+          route: '/ref/upload',
         },
         {
           icon: 'assets/icons/heroicons/outline/gift.svg',

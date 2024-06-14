@@ -4,6 +4,7 @@ import { Ref } from '../../../models/ref';
 import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Router } from '@angular/router';
+import { RefService } from '../../../../../api/ref.service';
 
 @Component({
   selector: '[app-ref-table]',
@@ -17,24 +18,20 @@ export class RefTableComponent {
   firestore = inject(Firestore);
   showRefs:boolean = false
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, public refService: RefService) {
     this.loadScript('https://www.tiktok.com/embed.js').then(status => {
       if (status === 'loaded') {
         this.showRefs = true;
       }
     })
   }
-  
-  ngAfterViewInit(){
-    getDocs(collection(this.firestore, "ref")).then((response) => {
-      console.log(response.docs)
-      response.docs.forEach((document: any) => {
-        let ref = { id: document.id, ...document.data() } as Ref
-        this.refs.push(ref);
-      });
+
+  ngAfterViewInit() {
+    this.refService.getLastRefs().subscribe(refs => {
+      this.refs = refs;
       this.loadScript('https://www.tiktok.com/embed.js');
       console.log(this.refs);
-    }); 
+    });
   }
 
   loadScript(url: string) {
