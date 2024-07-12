@@ -6,6 +6,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { RefUploadComponent } from './ref-upload/ref-upload.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/button/button.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [RefUploadComponent],
@@ -13,6 +14,8 @@ import { ButtonComponent } from '../../shared/components/button/button.component
     CommonModule,
     RefRoutingModule,
     AngularSvgIconModule.forRoot(),
+
+    NgxSkeletonLoaderModule.forRoot(),
     ReactiveFormsModule,
     ButtonComponent
   ]

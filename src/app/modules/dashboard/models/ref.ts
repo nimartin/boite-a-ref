@@ -8,4 +8,3 @@ export interface Ref {
     tiktokVideoThumbnail: string;
     tiktokVideoHtml: string;
 }
-  

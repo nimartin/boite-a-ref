@@ -1,0 +1,23 @@
+.svg-animate{
+  svg{
+    color: hsl(var(--primary));
+    fill: hsl(var(--primary));;
+  }
+  path {
+
+    fill: hsl(var(--primary));
+    stroke: hsl(var(--primary));
+    stroke-width: 2;
+  }
+
+  @keyframes fillAnimation {
+    0% {
+      fill: hsl(var(--primary));
+      stroke: hsl(var(--primary));
+    }
+    100% {
+      fill:#d2c8e7;
+      stroke:#d2c8e7;
+    }
+  }
+}
