@@ -33,7 +33,6 @@ export class RefUploadComponent {
 
   public ngOnInit(): void{
     this.initForm();
-    console.log('ici');
   }
 
   public initForm() {
@@ -58,6 +57,8 @@ export class RefUploadComponent {
     }
 
     this.ref = this.form.value as Ref
+
+    this.scrollToViewer();
     this.fetchTiktokVideo();
     // this._router.navigate(['/']);
   }
@@ -78,11 +79,20 @@ export class RefUploadComponent {
             this.loaded = true;
             this.loading = false;
           }, 2000)
-          this.saveRef();
+
+          // todo scroll to
+          // this.saveRef();
         },
         error: (err) => console.error('Failed to fetch TikTok embed:', err)
       }
     );
+  }
+
+  scrollToViewer() {
+    const viewerElement = this.el.nativeElement.querySelector('#tiktok-viewer');
+    if (viewerElement) {
+      viewerElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   saveRef(): void{

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { cx } from '../../utils/ckassnames';
 
 type ButtonProps = {
-  impact: 'bold' | 'light' | 'none';
+  impact: 'bold' | 'light' | 'none' | 'border';
   size: 'small' | 'medium' | 'large';
   shape: 'square' | 'rounded' | 'pill';
   tone: 'primary' | 'danger' | 'success' | 'warning' | 'info' | 'light';
@@ -39,31 +39,37 @@ export class ButtonComponent implements OnInit {
       bold: 'bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-primary',
       light: 'bg-primary/20 text-primary hover:bg-primary/30 focus-visible:ring-primary',
       none: 'bg-transparent text-primary hover:bg-primary/10 focus-visible:ring-primary',
+      border: 'border-primary text-primary hover:bg-primary/10 focus-visible:ring-primary', // New border variant
     },
     danger: {
       bold: 'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive',
       light: 'bg-destructive/20 text-destructive hover:bg-destructive/30 focus-visible:ring-destructive',
       none: 'bg-transparent text-destructive hover:bg-destructive/10 focus-visible:ring-destructive',
+      border: 'border-destructive text-destructive hover:bg-destructive/10 focus-visible:ring-destructive',
     },
     success: {
       bold: 'bg-green-500 text-green-950 hover:bg-green-600 focus-visible:ring-green-500',
       light: 'bg-green-500/20 text-green-600 hover:bg-green-500/30 focus-visible:ring-green-500',
       none: 'bg-transparent text-green-600 hover:bg-green-500/10 focus-visible:ring-green-500',
+      border: 'border-green-500 text-green-600 hover:bg-green-500/10 focus-visible:ring-green-500',
     },
     warning: {
       bold: 'bg-yellow-500 text-yellow-950 hover:bg-yellow-600 focus-visible:ring-yellow-500',
       light: 'bg-yellow-500/20 text-yellow-600 hover:bg-yellow-500/30 focus-visible:ring-yellow-500',
       none: 'bg-transparent text-yellow-600 hover:bg-yellow-500/10 focus-visible:ring-yellow-500',
+      border: 'border-yellow-500 text-yellow-600 hover:bg-yellow-500/10 focus-visible:ring-yellow-500',
     },
     info: {
       bold: 'bg-violet-500 text-white hover:bg-violet-600 focus-visible:ring-violet-500',
       light: 'bg-violet-500/20 text-violet-600 hover:bg-violet-500/30 focus-visible:ring-violet-500',
       none: 'bg-transparent text-violet-600 hover:bg-violet-500/10 focus-visible:ring-violet-500',
+      border: 'border-violet-500 text-violet-600 hover:bg-violet-500/10 focus-visible:ring-violet-500',
     },
     light: {
       bold: 'bg-muted text-muted-foreground hover:bg-muted/90 focus-visible:ring-muted',
       light: 'bg-muted/20 text-muted-foreground hover:bg-muted focus-visible:ring-muted',
       none: 'bg-transparent text-muted-foreground hover:bg-muted focus-visible:ring-muted',
+      border: 'border-muted text-muted-foreground hover:bg-muted/10 focus-visible:ring-muted',
     },
   };
 

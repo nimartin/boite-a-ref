@@ -1,99 +1,101 @@
 <!-- login form -->
-<div class="flex justify-center gap-10 mx-auto px-4 py-4 sm:px-8 lg:container items-center h-full">
-  <form class="my-10 space-y-6 " [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="">
-      <h2 class="mb-1 text-3xl font-semibold text-foreground">Vous voulez ajouter une <span
-          class="text-primary">ref</span> ? </h2>
-      <p class="text-sm text-muted-foreground">Contribuez à notre bibliothèque et indiquez nous quelle vidéo ajouter.
-      </p>
-    </div>
 
-    <div
-      class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-muted after:mt-0.5 after:flex-1 after:border-t after:border-muted">
-    </div>
-
-    <div class="space-y-3 text-left">
-      <div class="form__group">
-        <div class="relative">
-          <input type="text" id="title" [ngClass]="{ 'is__invalid-input': submitted && controls['title'].errors }"
-            class="peer block" placeholder=" " formControlName="title" />
-          <label for="title"
-            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-            Titre de la ref (ex: Mbappe - Il va pas la chercher)
-          </label>
-        </div>
-        <div *ngIf="submitted && controls['title'].errors" class="is__invalid-error">
-          <div *ngIf="controls['title'].errors['required']">Champs obligatoire</div>
-        </div>
+<div class="flex flex-col lg:flex-row justify-center gap-10 mx-auto px-4 py-4 sm:px-8 lg:container items-center">
+  <div>
+    <form class=" lg:my-10 space-y-6 " [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="">
+        <h2 class="mb-1 text-3xl font-semibold text-foreground">Vous voulez ajouter une <span
+            class="text-primary">ref</span> ? </h2>
+        <p class="text-sm text-muted-foreground">Contribuez à notre bibliothèque et indiquez nous quelle vidéo ajouter.
+        </p>
       </div>
 
-      <div class="form__group">
-        <div class="relative">
-          <input type="text" id="memeAuthor"
-            [ngClass]="{ 'is__invalid-input': submitted && controls['memeAuthor'].errors }" class="peer block"
-            placeholder=" " formControlName="memeAuthor" />
-          <label for="memeAuthor"
-            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-            Auteur de la ref (ex: Mbappe)
-          </label>
-        </div>
-        <div *ngIf="submitted && controls['memeAuthor'].errors" class="is__invalid-error">
-          <div *ngIf="controls['memeAuthor'].errors['required']">Champs obligatoire</div>
-        </div>
+      <div
+        class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-muted after:mt-0.5 after:flex-1 after:border-t after:border-muted">
       </div>
 
-      <div class="form__group">
-        <div class="relative">
-          <input type="text" id="memeRef" [ngClass]="{ 'is__invalid-input': submitted && controls['memeRef'].errors }"
-            class="peer block" placeholder=" " formControlName="memeRef" />
-          <label for="memeRef"
-            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-            La ref culte (ex: Il va pas la chercher)
-          </label>
+      <div class="space-y-3 text-left">
+        <div class="form__group">
+          <div class="relative">
+            <input type="text" id="title" [ngClass]="{ 'is__invalid-input': submitted && controls['title'].errors }"
+              class="peer block" placeholder=" " formControlName="title" />
+            <label for="title"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              Titre de la ref (ex: Mbappe - Il va pas la chercher)
+            </label>
+          </div>
+          <div *ngIf="submitted && controls['title'].errors" class="is__invalid-error">
+            <div *ngIf="controls['title'].errors['required']">Champs obligatoire</div>
+          </div>
         </div>
-        <div *ngIf="submitted && controls['memeRef'].errors" class="is__invalid-error">
-          <div *ngIf="controls['memeRef'].errors['required']">Champs obligatoire</div>
+
+        <div class="form__group">
+          <div class="relative">
+            <input type="text" id="memeAuthor"
+              [ngClass]="{ 'is__invalid-input': submitted && controls['memeAuthor'].errors }" class="peer block"
+              placeholder=" " formControlName="memeAuthor" />
+            <label for="memeAuthor"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              Auteur de la ref (ex: Mbappe)
+            </label>
+          </div>
+          <div *ngIf="submitted && controls['memeAuthor'].errors" class="is__invalid-error">
+            <div *ngIf="controls['memeAuthor'].errors['required']">Champs obligatoire</div>
+          </div>
         </div>
+
+        <div class="form__group">
+          <div class="relative">
+            <input type="text" id="memeRef" [ngClass]="{ 'is__invalid-input': submitted && controls['memeRef'].errors }"
+              class="peer block" placeholder=" " formControlName="memeRef" />
+            <label for="memeRef"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              La ref culte (ex: Il va pas la chercher)
+            </label>
+          </div>
+          <div *ngIf="submitted && controls['memeRef'].errors" class="is__invalid-error">
+            <div *ngIf="controls['memeRef'].errors['required']">Champs obligatoire</div>
+          </div>
+        </div>
+
+        <div class="form__group">
+          <div class="relative">
+            <input type="text" id="tiktokVideoCite"
+              [ngClass]="{ 'is__invalid-input': submitted && controls['tiktokVideoCite'].errors }" class="peer block"
+              placeholder=" " formControlName="tiktokVideoCite" />
+            <label for="tiktokVideoCite"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              Le lien de la vidéo (ex: https://tiktok.com/user/video/1234)
+            </label>
+          </div>
+          <div *ngIf="submitted && controls['tiktokVideoCite'].errors" class="is__invalid-error">
+            <div *ngIf="controls['tiktokVideoCite'].errors['required']">Champs obligatoire</div>
+          </div>
+        </div>
+
+
       </div>
 
-      <div class="form__group">
-        <div class="relative">
-          <input type="text" id="tiktokVideoCite"
-            [ngClass]="{ 'is__invalid-input': submitted && controls['tiktokVideoCite'].errors }" class="peer block"
-            placeholder=" " formControlName="tiktokVideoCite" />
-          <label for="tiktokVideoCite"
-            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-            Le lien de la vidéo (ex: https://tiktok.com/user/video/1234)
-          </label>
-        </div>
-        <div *ngIf="submitted && controls['tiktokVideoCite'].errors" class="is__invalid-error">
-          <div *ngIf="controls['tiktokVideoCite'].errors['required']">Champs obligatoire</div>
-        </div>
+      <div class="mb-2 flex items-center justify-end space-x-3">
+
+        <app-button routerLink="/auth/forgot-password" impact="none" tone="primary" shape="rounded" size="small">
+          Besoin d'aide? Consultez le tutoriel
+        </app-button>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Envoyer la ref</app-button>
       </div>
 
 
-    </div>
-
-    <div class="mb-2 flex items-center justify-end space-x-3">
-
-      <app-button routerLink="/auth/forgot-password" impact="none" tone="primary" shape="rounded" size="small">
-        Besoin d'aide? Consultez le tutoriel
-      </app-button>
-    </div>
-
-    <!-- Submit Button -->
-    <div>
-      <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Envoyer la ref</app-button>
-    </div>
-
-
-  </form>
+    </form>
+  </div>
   <div class="flex justify-center items-center">
     <div class="svg-animate flex flex-col gap-5">
       <svg xml:space="preserve" viewBox="165.679002076 3.5197575987000005 214.95497999999998 272.27703"
         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="Capa_1" version="1.1"
-        stroke-width="2" stroke="currentColor" fill="currentColor" style="max-height: 500px" width="200px"
-        height="200px">
+        stroke-width="2" stroke="currentColor" fill="currentColor" width="200px" height="200px">
         <g>
           <g>
             <path
@@ -131,7 +133,7 @@
 
 
   </div>
-  <div class="">
+  <div class="" id="tiktok-viewer">
     <ngx-skeleton-loader *ngIf="!ref || !ref.tiktokVideoId || !loaded" adivpearance="circle"
       [theme]="{
           'background-color':'#d9cde6', width: '300px', height: '70vh', 'animation-duration': '2s', 'border-radius':'10px' }">
@@ -145,3 +147,79 @@
     </div>
   </div>
 </div>
+
+
+<app-ref-modal>
+  <div class="modal-content relative bg-white rounded-xl p-8 max-w-xs w-full shadow-lg text-center">
+    <div class="emoji-container flex justify-center items-center rounded-full mx-auto mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" id="partying-face" width="200" height="200">
+        <!-- Emoji face -->
+        <circle cx="66.49" cy="74.67" r="45.87" fill="#febb10"></circle>
+        <!-- Eyes -->
+        <path fill="#3a3a3a"
+          d="M75.22 106.15c-.92 0-1.78-.56-2.12-1.47-.44-1.17.15-2.48 1.32-2.92 1.68-.63 2.72-1.54 2.83-2.48.12-.97-.69-2.65-3.32-4.45-.7-.48-1.08-1.32-.96-2.17.11-.85.7-1.56 1.5-1.84 1.96-.68 3.17-1.73 3.24-2.82.07-1.01-.82-2.57-3.52-3.93-1.12-.56-1.56-1.93-1-3.05.56-1.12 1.93-1.57 3.05-1 4.03 2.04 6.22 5.06 6 8.28-.14 2-1.19 3.77-3 5.11 1.9 2.03 2.77 4.23 2.51 6.42-.19 1.57-1.19 4.46-5.73 6.17-.26.1-.53.15-.8.15zM57.67 68.82c-1.25 0-2.27-1.01-2.27-2.27 0-1.38-.4-2.47-1.18-3.24-.76-.75-1.89-1.18-3.08-1.17-1.59.01-4.29.96-4.29 4.41 0 1.25-1.01 2.27-2.27 2.27s-2.27-1.01-2.27-2.27c0-5.82 4.42-8.91 8.79-8.94.03 0 .05 0 .08 0 2.37 0 4.64.9 6.23 2.48 1.65 1.63 2.52 3.87 2.52 6.46 0 1.25-1.01 2.27-2.27 2.27zM88.39 68.82c-1.25 0-2.27-1.01-2.27-2.27 0-3.45-2.7-4.4-4.29-4.41-1.2-.02-2.32.42-3.08 1.17-.78.77-1.18 1.87-1.18 3.24 0 1.25-1.01 2.27-2.27 2.27s-2.27-1.01-2.27-2.27c0-2.59.87-4.83 2.52-6.46 1.61-1.6 3.91-2.51 6.31-2.48 4.37.04 8.79 3.12 8.79 8.94 0 1.25-1.01 2.27-2.27 2.27z">
+        </path>
+        <!-- Party blower -->
+        <path fill="#0096e0"
+          d="m103.58,96.54c-.21,0-.43,0-.65-.01-5.26,0-22.28-.52-23-.54-1.25-.04-2.24-1.08-2.2-2.33.04-1.25,1.08-2.24,2.33-2.2.18,0,17.79.53,22.92.53.04,0,.07,0,.11,0,6.88.33,7.77-6.18,7.85-6.92.15-1.37-.24-2.66-1.09-3.61-.88-.98-2.17-1.53-3.64-1.53h-.01c-1.55,0-2.66.91-3.19 1.45-.85.88-1.22 1.86-1.21 2.4.03.93.37 1.46.96 1.45.8-.01,1.21-.21,1.51-1.38.31-1.21,1.55-1.94,2.76-1.63,1.21.31,1.94,1.55,1.63,2.76-1.06 4.09-4.1 4.74-5.83 4.77-2.68.05-5.44-1.95-5.56-5.84-.06-1.91.87-4.04,2.49-5.7,1.77-1.82,4.06-2.83,6.44-2.83h.03c2.77.01,5.26 1.09,7 3.04,1.72 1.92,2.51 4.45,2.22 7.11-.58 5.37-4.53 10.98-11.86 10.98Z">
+        </path>
+        <polygon fill="#f23a41"
+          points="65.81 28.8 23.92 57.57 23.45 47.29 22.99 37.01 22.53 26.73 22.07 16.45 21.75 9.41 28.19 12.24 37.6 16.38 47.01 20.52 56.41 24.66 65.81 28.8">
+        </polygon>
+        <polygon fill="#0096e0" points="65.81 28.8 23.92 57.57 23.45 47.29 56.41 24.66 65.81 28.8"></polygon>
+        <polygon fill="#0096e0" points="47.01 20.52 22.99 37.01 22.53 26.73 37.6 16.38 47.01 20.52"></polygon>
+        <polygon fill="#0096e0" points="28.19 12.24 22.07 16.45 21.75 9.41 28.19 12.24"></polygon>
+        <!-- Animated Confetti -->
+        <path fill="#37c4b2"
+          d="M95.08 44.44c-1.13 0-2.1-.84-2.25-1.99-.16-1.24.73-2.38 1.97-2.53 4.41-.55 7.53-2.37 9.56-5.57.67-1.06 2.07-1.37 3.13-.7 1.06.67 1.37 2.07.7 3.13-2.75 4.35-7.07 6.92-12.82 7.64-.1.01-.19.02-.28.02z">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 0 128" dur="3s"
+            repeatCount="indefinite" />
+          <animate attributeName="opacity" values="1; 0" dur="3s" repeatCount="indefinite" />
+        </path>
+        <path fill="#37c4b2"
+          d="M9.43 68.78c-1.13 0-2.1-.84-2.25-1.99-.16-1.24.73-2.38 1.97-2.53 4.41-.55 7.53-2.37 9.56-5.57.67-1.06 2.07-1.37 3.13-.7 1.06.67 1.37 2.07.7 3.13-2.75 4.35-7.07 6.92-12.82 7.64-.1.01-.19.02-.28.02z">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 0 128" dur="2s"
+            repeatCount="indefinite" />
+          <animate attributeName="opacity" values="1; 0" dur="2s" repeatCount="indefinite" />
+        </path>
+        <path fill="#f23a41"
+          d="M31.44 113.73c-1.13 0-2.1-.84-2.25-1.99-.16-1.24.73-2.38 1.97-2.53 4.41-.55 7.53-2.37 9.56-5.57.67-1.06 2.07-1.37 3.13-.7 1.06.67 1.37 2.07.7 3.13-2.75 4.35-7.07 6.92-12.82 7.64-.1.01-.19.02-.28.02z">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 0 128" dur="3.5s"
+            repeatCount="indefinite" />
+          <animate attributeName="opacity" values="1; 0" dur="3.5s" repeatCount="indefinite" />
+        </path>
+        <path fill="#f23a41"
+          d="M60.22 18.5c-1.13 0-2.1-.84-2.25-1.99-.16-1.24.73-2.38 1.97-2.53 4.41-.55 7.53-2.37 9.56-5.57.67-1.06 2.07-1.37 3.13-.7 1.06.67 1.37 2.07.7 3.13-2.75 4.35-7.07 6.92-12.82 7.64-.1.01-.19.02-.28.02z">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 0 128" dur="2.5s"
+            repeatCount="indefinite" />
+          <animate attributeName="opacity" values="1; 0" dur="2.5s" repeatCount="indefinite" />
+        </path>
+        <circle cx="41.57" cy="85.11" r="2.27" fill="#37c4b2">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 0 128" dur="3s"
+            repeatCount="indefinite" />
+          <animate attributeName="opacity" values="1; 0" dur="3s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="110.09" cy="62.14" r="2.27" fill="#f23a41">
+          <animateTransform attributeName="transform" type="translate" values="0 0; 0 128" dur="2s"
+            repeatCount="indefinite" />
+          <animate attributeName="opacity" values="1; 0" dur="2s" repeatCount="indefinite" />
+        </circle>
+      </svg>
+    </div>
+    <h2 class="text-2xl font-bold text-gray-800 mb-2">
+      <div>Ref en attente de</div>
+      <div>Confirmation!</div>
+    </h2>
+    <p class="text-gray-600 mb-4">Merci pour ton aide...</p>
+    <div class="flex flex-col w-full gap-1">
+      <div class="w-full">
+        <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Ajoute une autre ref !</app-button>
+      </div>
+      <div class="w-full">
+        <app-button full impact="border" tone="primary" shape="rounded" size="medium">
+          Retour à l'accueil
+        </app-button>
+      </div>
+    </div>
+  </div>
+</app-ref-modal>
