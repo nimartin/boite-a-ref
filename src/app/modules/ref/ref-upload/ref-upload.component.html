@@ -1,12 +1,14 @@
 <!-- login form -->
 
-<div class="flex flex-col lg:flex-row justify-center gap-10 mx-auto px-4 py-4 sm:px-8 lg:container items-center">
+<div
+  class="flex flex-col lg:flex-row justify-center gap-10 mx-auto px-4 py-4 sm:px-8 lg:container items-center min-h-full">
   <div>
     <form class=" lg:my-10 space-y-6 " [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="">
-        <h2 class="mb-1 text-3xl font-semibold text-foreground">Vous voulez ajouter une <span
+        <h2 class="mb-1 text-3xl font-semibold text-foreground">Tu veux ajouter une <span
             class="text-primary">ref</span> ? </h2>
-        <p class="text-sm text-muted-foreground">Contribuez à notre bibliothèque et indiquez nous quelle vidéo ajouter.
+        <p class="text-sm text-muted-foreground">Contribue à notre bibliothèque et indique nous quelles vidéos tu
+          voudrais ajouter.
         </p>
       </div>
 
@@ -24,7 +26,7 @@
               Titre de la ref (ex: Mbappe - Il va pas la chercher)
             </label>
           </div>
-          <div *ngIf="submitted && controls['title'].errors" class="is__invalid-error">
+          <div *ngIf="submitted && controls['title'].errors" class="is__invalid-error text-primary">
             <div *ngIf="controls['title'].errors['required']">Champs obligatoire</div>
           </div>
         </div>
@@ -79,13 +81,13 @@
       <div class="mb-2 flex items-center justify-end space-x-3">
 
         <app-button routerLink="/auth/forgot-password" impact="none" tone="primary" shape="rounded" size="small">
-          Besoin d'aide? Consultez le tutoriel
+          Besoin d'aide? Consulte le tutoriel
         </app-button>
       </div>
 
       <!-- Submit Button -->
       <div>
-        <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Envoyer la ref</app-button>
+        <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Valide ta ref !</app-button>
       </div>
 
 
@@ -134,11 +136,11 @@
 
   </div>
   <div class="" id="tiktok-viewer">
-    <ngx-skeleton-loader *ngIf="!ref || !ref.tiktokVideoId || !loaded" adivpearance="circle"
+    <ngx-skeleton-loader *ngIf="!ref || !ref.tiktokVideoId || !isLoaded" adivpearance="circle"
       [theme]="{
           'background-color':'#d9cde6', width: '300px', height: '70vh', 'animation-duration': '2s', 'border-radius':'10px' }">
     </ngx-skeleton-loader>
-    <div *ngIf=" ref && ref.tiktokVideoId" [class.hidden]="!loaded">
+    <div *ngIf=" ref && ref.tiktokVideoId" [class.hidden]="!isLoaded">
       <blockquote [attr.cite]="ref.tiktokVideoCite" [attr.data-video-id]="ref.tiktokVideoId" class="tiktok-embed"
         auto-play="0">
         <section>
@@ -149,10 +151,11 @@
 </div>
 
 
-<app-ref-modal>
+<app-ref-modal *ngIf="showModal">
   <div class="modal-content relative bg-white rounded-xl p-8 max-w-xs w-full shadow-lg text-center">
     <div class="emoji-container flex justify-center items-center rounded-full mx-auto mb-4">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" id="partying-face" width="200" height="200">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" id="partying-face" width="200" height="200"
+        *ngIf="isLoaded">
         <!-- Emoji face -->
         <circle cx="66.49" cy="74.67" r="45.87" fill="#febb10"></circle>
         <!-- Eyes -->
@@ -205,19 +208,38 @@
           <animate attributeName="opacity" values="1; 0" dur="2s" repeatCount="indefinite" />
         </circle>
       </svg>
+      <svg *ngIf="!isLoaded" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" id="crying-face">
+        <circle cx="64" cy="64" r="45.87" fill="#febb10"></circle>
+        <path fill="#3a3a3a"
+          d="M33.78 53.93c-.16 0-.33-.03-.49-.09-.68-.27-1.02-1.04-.75-1.73.11-.27 2.64-6.55 8.55-9.61.65-.34 1.46-.08 1.8.57.34.65.08 1.46-.57 1.8-5.01 2.6-7.28 8.17-7.3 8.23-.21.52-.71.84-1.24.84zM94.22 53.93c-.53 0-1.03-.32-1.24-.84-.02-.05-2.3-5.63-7.3-8.23-.65-.34-.91-1.14-.57-1.8.34-.65 1.14-.91 1.8-.57 5.91 3.07 8.45 9.35 8.55 9.61.27.68-.06 1.46-.75 1.73-.16.06-.33.09-.49.09z">
+        </path>
+        <rect width="21.84" height="21.84" x="70.55" y="49.63" fill="#fff" rx="10.92" ry="10.92"></rect>
+        <rect width="13.1" height="13.1" x="74.92" y="53.99" fill="#3a3a3a" rx="6.55" ry="6.55"></rect>
+        <rect width="21.84" height="21.84" x="35.61" y="49.63" fill="#fff" rx="10.92" ry="10.92"></rect>
+        <rect width="13.1" height="13.1" x="39.97" y="53.99" fill="#3a3a3a" rx="6.55" ry="6.55"></rect>
+        <rect width="21.82" height="21.82" x="72.06" y="84.93" fill="#0096e0" rx="10.91" ry="10.91"></rect>
+        <path fill="#0096e0"
+          d="M93.88 95.84c.32-3.21-5.41-15.04-10.91-24.38v24.38h10.91zM72.06 95.84c-.32-3.21 5.41-15.04 10.91-24.38v24.38h-10.91z">
+        </path>
+        <path fill="#3a3a3a"
+          d="m72.05,82.8c-.47,0-.94-.14-1.34-.44-4.57-3.37-8.83-3.37-13.4,0-1.01.74-2.43.53-3.17-.48-.74-1.01-.53-2.43.48-3.17,6.14-4.53,12.64-4.53,18.78,0,1.01.74,1.22,2.16.48,3.17-.44.6-1.13.92-1.83.92Z">
+        </path>
+        <rect width="128" height="128" fill="none"></rect>
+      </svg>
     </div>
     <h2 class="text-2xl font-bold text-gray-800 mb-2">
-      <div>Ref en attente de</div>
-      <div>Confirmation!</div>
+      <div [innerHTML]="modalTitle"></div>
     </h2>
-    <p class="text-gray-600 mb-4">Merci pour ton aide...</p>
+    <p class="text-gray-600 mb-4" [innerHTML]="modalMessage"></p>
     <div class="flex flex-col w-full gap-1">
       <div class="w-full">
-        <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Ajoute une autre ref !</app-button>
+        <app-button (buttonClick)="modalPrimaryButtonAction()" full impact="bold" tone="primary" shape="rounded"
+          size="medium">{{modalPrimaryButton}}</app-button>
       </div>
       <div class="w-full">
-        <app-button full impact="border" tone="primary" shape="rounded" size="medium">
-          Retour à l'accueil
+        <app-button (buttonClick)="modalSecondaryButtonAction()" full impact="border" tone="primary" shape="rounded"
+          size="medium">
+          {{modalSecondaryButton}}
         </app-button>
       </div>
     </div>

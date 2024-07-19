@@ -4,6 +4,7 @@ import { TikTokService } from '../../../core/services/tiktok.service';
 import { Ref } from '../../dashboard/models/ref';
 import { Observable } from 'rxjs';
 import { RefService } from '../../../api/ref.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-ref-upload',
   templateUrl: './ref-upload.component.html',
@@ -14,11 +15,10 @@ export class RefUploadComponent {
   public form!: FormGroup;
   submitted = false;
   ref: Ref;
-  public loaded: boolean = false;
-  public loading: boolean = false;
+  public uploadState: UploadState = UploadState.EMPTY;
+  public uploadStateEnum = UploadState;
 
-
-  constructor(public formBuilder: FormBuilder, private el: ElementRef, private tiktokService: TikTokService, private refService: RefService) {
+  constructor(public formBuilder: FormBuilder, private el: ElementRef, private tiktokService: TikTokService, private refService: RefService, private router: Router) {
     this.ref = {
       id: '',
       title: '',
@@ -64,7 +64,7 @@ export class RefUploadComponent {
   }
 
   fetchTiktokVideo(): void {
-    this.loading = true;
+    this.uploadState = UploadState.LOADING;
     this.animate();
     const url = this.form.get('tiktokVideoCite')?.value
     this.tiktokService.getTikTokEmbed(url).subscribe(
@@ -76,14 +76,16 @@ export class RefUploadComponent {
           this.ref.tiktokVideoThumbnail = tiktokRef.tiktokVideoThumbnail;
           this.tiktokService.loadScript();
           setTimeout(() => {
-            this.loaded = true;
-            this.loading = false;
+            this.uploadState = UploadState.LOADED;
           }, 2000)
 
-          // todo scroll to
-          // this.saveRef();
+
+          this.saveRef();
         },
-        error: (err) => console.error('Failed to fetch TikTok embed:', err)
+        error: (err) => {
+          console.error('Failed to fetch TikTok embed:', err)
+          this.uploadState = UploadState.ERROR;
+        }
       }
     );
   }
@@ -97,14 +99,22 @@ export class RefUploadComponent {
 
   saveRef(): void{
     this.refService.saveRef(this.ref).subscribe({
-      next: (createdRef) => console.log('Ref saved successfully:', createdRef),
-      error: (err) => console.error('Failed to save ref:', err)
+      next: (createdRef) => {
+        console.log('Ref saved successfully:', createdRef)
+        setTimeout(() => {
+          this.uploadState = UploadState.UPLOAD;
+        }, 2000)
+      },
+      error: (err) => {
+        this.uploadState = UploadState.ERROR;
+        ;
+      }
     });
   }
 
   animate() {
     const svgContainer = this.el.nativeElement.querySelector('.svg-animate');
-    if (svgContainer && this.loading) {
+    if (svgContainer && this.uploadState === UploadState.LOADING) {
       const paths = svgContainer.querySelectorAll('path');
       const duration = 0.01; // Duration of the fill animation in seconds
       const delay = 0.05; // Delay between each path fill in seconds
@@ -117,8 +127,6 @@ export class RefUploadComponent {
     }
   }
 
-
-
   resetAnimation(paths: NodeListOf<SVGPathElement>) {
     paths.forEach((path: SVGPathElement) => {
       path.style.animation = 'none';
@@ -127,8 +135,59 @@ export class RefUploadComponent {
     setTimeout(() => this.animate(), 100);
   }
 
-  get loadingText(): string{
-    return this.loaded ? 'Vidéo chargée !' : (this.loading ? 'Chargement...' : `La vidéo s'affichera ici`);
+  modalPrimaryButtonAction(): void {
+    if (this.uploadState === UploadState.UPLOAD) {
+      this.initForm();
+    }
+    this.uploadState = UploadState.EMPTY;
   }
 
+  modalSecondaryButtonAction(): void {
+    if (this.uploadState === UploadState.UPLOAD) {
+      this.router.navigate(['/dashboard/refs']);
+    } else {
+      this.router.navigate(['/ref/tutorial']);
+    }
+  }
+
+
+  get loadingText(): string{
+    // If the upload state is loading return loading state
+    // If the upload state is loaded or uploaded return loaded state
+    // If the upload state is error return error state
+    // if the upload state is empty return empty state
+    return this.uploadState === UploadState.LOADING ? 'Chargement...' : this.uploadState === UploadState.LOADED ? 'Ta ref est trouvée' : this.uploadState === UploadState.UPLOAD ? 'Ta ref a été importée' : this.uploadState === UploadState.ERROR ? 'Erreur d\'import, réessaye !' : 'La ref s\'affichera ici';
+  }
+
+  get isLoaded(): boolean {
+    return this.uploadState === UploadState.LOADED || this.uploadState === UploadState.UPLOAD;
+  }
+
+  get modalTitle(): string {
+    return this.uploadState === UploadState.UPLOAD ? 'Ta ref a été <br>importée' : 'Erreur lors de<br> l\'import !';
+  }
+
+  get modalMessage(): string {
+    return this.uploadState === UploadState.UPLOAD ? 'Merci pour ton aide...<br>La ref est en cours de validation' : 'Quelque chose ne s\'est pas passé correctement...';
+  }
+
+  get modalPrimaryButton(): string {
+    return this.uploadState === UploadState.UPLOAD ? 'Ajoute une autre ref !' : 'Essaye à nouveau !';
+  }
+
+  get modalSecondaryButton(): string {
+    return this.uploadState === UploadState.UPLOAD ? 'Retour à l\'accueil' : 'Visionne le tutoriel';
+  }
+
+  get showModal(): boolean {
+    return this.uploadState === UploadState.UPLOAD || this.uploadState === UploadState.ERROR;
+  }
+}
+
+export enum UploadState {
+  LOADING = 'loading',
+  LOADED = 'loaded',
+  ERROR = 'error',
+  EMPTY = 'empty',
+  UPLOAD = 'upload'
 }
