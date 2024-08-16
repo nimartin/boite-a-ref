@@ -32,11 +32,9 @@ export class RefViewComponent  implements OnInit
   async getRefById(id: string) {
     const docRef = doc(this.firestore, 'ref', id); // Crée une référence de document avec l'ID spécifié
     const docSnap = await getDoc(docRef); // Récupère le document à partir de la référence
-    
     if (docSnap.exists()) {
         const refData = { id: docSnap.id, ...docSnap.data() } as Ref; // Combine l'ID et les données du document
         this.ref = refData;
-        console.log(this.ref); // Affiche les données récupérées
     } else {
         console.log("No such document!");
     }

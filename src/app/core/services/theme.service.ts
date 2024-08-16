@@ -1,6 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Theme } from '../models/theme.model';
 import { effect } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -8,26 +9,29 @@ import { effect } from '@angular/core';
 export class ThemeService {
   public theme = signal<Theme>({ mode: 'dark', color: 'base' });
 
-  constructor() {
-    this.loadTheme();
-    effect(() => {
-      this.setTheme();
-    });
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadTheme();
+      effect(() => {
+        this.setTheme();
+      });
+    }
   }
 
-  private loadTheme() {
-    if (typeof window !== 'undefined' && localStorage) {
-      const theme = localStorage.getItem('theme');
-      if (theme) {
-        this.theme.set(JSON.parse(theme));
+  public loadTheme() {
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage) {
+        const theme = localStorage.getItem('theme');
+        if (theme) {
+          this.theme.set(JSON.parse(theme));
+        }
       }
     }
+
   }
 
   private setTheme() {
-    if (typeof window !== 'undefined' && localStorage) {
-      localStorage.setItem('theme', JSON.stringify(this.theme()));
-    }
+    localStorage.setItem('theme', JSON.stringify(this.theme()));
     this.setThemeClass();
   }
 

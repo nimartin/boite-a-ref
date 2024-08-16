@@ -19,18 +19,17 @@ export class RefTableComponent {
   showRefs:boolean = false
 
   constructor(private router: Router, public refService: RefService) {
-    this.loadScript('https://www.tiktok.com/embed.js').then(status => {
-      if (status === 'loaded') {
-        this.showRefs = true;
-      }
-    })
+    // this.loadScript('https://www.tiktok.com/embed.js').then(status => {
+    //   if (status === 'loaded') {
+    //     this.showRefs = true;
+    //   }
+    // })
   }
 
   ngAfterViewInit() {
     this.refService.getLastRefs().subscribe(refs => {
       this.refs = refs;
       this.loadScript('https://www.tiktok.com/embed.js');
-      console.log(this.refs);
     });
   }
 

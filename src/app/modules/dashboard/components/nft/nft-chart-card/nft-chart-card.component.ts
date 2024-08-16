@@ -100,7 +100,6 @@ export class NftChartCardComponent implements OnInit, OnDestroy {
       },
       colors: [baseColor], //line colors
     };
-
     effect(() => {
       /** change chart theme */
       let primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary');
