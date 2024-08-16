@@ -10,11 +10,13 @@
   <script async src="https://www.tiktok.com/embed.js"></script>
   <script>
     (function () {
-      const theme = localStorage.getItem('theme');
-      if (theme) {
-        const parsedTheme = JSON.parse(theme);
-        document.documentElement.className = parsedTheme.mode;
-        document.documentElement.setAttribute('data-theme', parsedTheme.color);
+      if (typeof window !== 'undefined') {
+        const theme = localStorage.getItem('theme');
+        if (theme) {
+          const parsedTheme = JSON.parse(theme);
+          document.documentElement.className = parsedTheme.mode;
+          document.documentElement.setAttribute('data-theme', parsedTheme.color);
+        }
       }
     })();
   </script>
