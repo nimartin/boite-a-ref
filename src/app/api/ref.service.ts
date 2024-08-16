@@ -31,7 +31,7 @@ export class RefService {
 
   getLastRefs(): Observable<Ref[]> {
     const refCollection = collection(this.firestore, 'ref');
-    const last10Query = query(refCollection, orderBy('memeRef', 'desc'), limit(10));
+    const last10Query = query(refCollection, orderBy('uploadAt', 'desc'), limit(500));
     const docsPromise = getDocs(last10Query);
     return from(docsPromise).pipe(
       map(response => {
@@ -45,7 +45,11 @@ export class RefService {
 
   saveRef(ref: Omit<Ref, 'id'>): Observable<Ref> {
     const refCollection = collection(this.firestore, 'ref');
-    const savePromise = addDoc(refCollection, ref);
+    const refWithTimestamp = {
+      ...ref,
+      uploadAt: new Date() // Ajout de la date et l'heure d'ajout
+    };
+    const savePromise = addDoc(refCollection, refWithTimestamp);
 
     return from(savePromise).pipe(
       switchMap(docRef => {
@@ -57,7 +61,7 @@ export class RefService {
             console.log('Thumbnail uploaded to:', downloadUrl);
             const updatedRef: Ref = {
               id: refId,
-              ...ref,
+              ...refWithTimestamp,
               tiktokVideoThumbnail: downloadUrl
             };
             return updatedRef;
@@ -74,7 +78,7 @@ export class RefService {
   getTopRefs(): Observable<Ref[]> {
     // call firebase and get top 3 refs order by memeRef
     const refCollection = collection(this.firestore, 'ref');
-    const top3Query = query(refCollection, orderBy('memeAuthor', 'desc'), limit(3));
+    const top3Query = query(refCollection, orderBy('shareCount', 'desc'), limit(3));
     const docsPromise = getDocs(top3Query);
     return from(docsPromise).pipe(
       map(response => {
