@@ -1,0 +1,105 @@
+<div class="flex max-h-[420px]  flex-col rounded-lg bg-background p-8 sm:flex-row" *ngIf="ref">
+  <div
+    class=" relative  flex-1 cursor-pointer rounded-md bg-cover transition duration-150 ease-in-out hover:opacity-75 flex justify-center">
+
+    <img class="h-full object-cover z-10"
+      [src]="'https://p16-sign-useast2a.tiktokcdn.com/obj/tos-useast2a-p-0037-euttp/ocADFBJtNEsWXeIYIBurEfmYP0mJmQA2ADvRQt?lk3s=b59d6b55&nonce=97044&refresh_token=0b0860d073effeab130579401a21187b&x-expires=1723212000&x-signature=O4mM9w3Qz3Zqdt7dxufRFo%2F%2BzYI%3D&shp=b59d6b55&shcp=-'"
+      alt="thumbnail">
+    <div class="absolute inset-0 bg-center  bg-repeat bg-contain opacity-30 rounded-md"
+      style="background-image: url('https://p16-sign-useast2a.tiktokcdn.com/obj/tos-useast2a-p-0037-euttp/ocADFBJtNEsWXeIYIBurEfmYP0mJmQA2ADvRQt?lk3s=b59d6b55&nonce=97044&refresh_token=0b0860d073effeab130579401a21187b&x-expires=1723212000&x-signature=O4mM9w3Qz3Zqdt7dxufRFo%2F%2BzYI%3D&shp=b59d6b55&shcp=-'); filter: grayscale(100%) brightness(50%);">
+    </div>
+  </div>
+  <!-- Details  -->
+  <div class="mt-4 flex flex-1 flex-col justify-between space-y-2 sm:ml-6 md:mt-0">
+    <div>
+      <small class="font-semibold text-muted-foreground">La ref qu'on préfère</small>
+      <h2 class="text-2xl font-semibold text-foreground">{{ ref.title }}</h2>
+    </div>
+
+    <div class="flex space-x-8">
+      <!-- Avatar -->
+      <div class="flex items-center space-x-2">
+        <div class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-center">
+          <span class="text-xs font-semibold text-primary-foreground">
+            <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 964.07 964.07" xml:space="preserve">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <g>
+                  <path
+                    d="M850.662,877.56c-0.77,0.137-4.372,0.782-10.226,1.831c-230.868,41.379-273.337,48.484-278.103,49.037 c-11.37,1.319-19.864,0.651-25.976-2.042c-3.818-1.682-5.886-3.724-6.438-4.623c0.268-1.597,2.299-5.405,3.539-7.73 c1.207-2.263,2.574-4.826,3.772-7.558c7.945-18.13,2.386-36.521-14.51-47.999c-12.599-8.557-29.304-12.03-49.666-10.325 c-12.155,1.019-225.218,36.738-342.253,56.437l-57.445,45.175c133.968-22.612,389.193-65.433,402.622-66.735 c11.996-1.007,21.355,0.517,27.074,4.4c3.321,2.257,2.994,3.003,2.12,4.997c-0.656,1.497-1.599,3.264-2.596,5.135 c-3.835,7.189-9.087,17.034-7.348,29.229c1.907,13.374,11.753,24.901,27.014,31.626c8.58,3.78,18.427,5.654,29.846,5.654 c4.508,0,9.261-0.292,14.276-0.874c9.183-1.065,103.471-17.67,280.244-49.354c5.821-1.043,9.403-1.686,10.169-1.821 c9.516-1.688,15.861-10.772,14.172-20.289S860.183,875.87,850.662,877.56z">
+                  </path>
+                  <path
+                    d="M231.14,707.501L82.479,863.005c-16.373,17.127-27.906,38.294-33.419,61.338l211.087-166.001 c66.081,29.303,118.866,38.637,159.32,38.637c71.073,0,104.065-28.826,104.065-28.826c-66.164-34.43-75.592-98.686-75.592-98.686 c50.675,21.424,156.235,46.678,156.235,46.678c140.186-93.563,213.45-296.138,213.45-296.138 c-14.515,3.99-28.395,5.652-41.475,5.652c-65.795,0-111-42.13-111-42.13l183.144-39.885C909.186,218.71,915.01,0,915.01,0 L358.176,495.258C295.116,551.344,250.776,625.424,231.14,707.501z">
+                  </path>
+                </g>
+              </g>
+            </svg>
+          </span>
+        </div>
+
+        <div class="flex flex-col">
+          <small class="text-xs text-muted-foreground">Auteur de la ref</small>
+          <a href="" class="text-xs font-semibold text-foreground hover:text-primary"> {{ref.memeAuthor}} </a>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="flex items-center space-x-2">
+        <div class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-center">
+          <span class="text-xs font-semibold text-primary-foreground">
+            <svg viewBox="0 0 24 24" width="20px" height="20px" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M10.0464 14C8.54044 12.4882 8.67609 9.90087 10.3494 8.22108L15.197 3.35462C16.8703 1.67483 19.4476 1.53865 20.9536 3.05046C22.4596 4.56228 22.3239 7.14956 20.6506 8.82935L18.2268 11.2626"
+                  stroke="black" stroke-width="1.5" stroke-linecap="round"></path>
+                <path
+                  d="M13.9536 10C15.4596 11.5118 15.3239 14.0991 13.6506 15.7789L11.2268 18.2121L8.80299 20.6454C7.12969 22.3252 4.55237 22.4613 3.0464 20.9495C1.54043 19.4377 1.67609 16.8504 3.34939 15.1706L5.77323 12.7373"
+                  stroke="black" stroke-width="1.5" stroke-linecap="round"></path>
+              </g>
+            </svg>
+          </span>
+        </div>
+
+        <div class="flex flex-col">
+          <small class="text-xs text-muted-foreground">Partagée</small>
+          <a href="" class="text-xs font-semibold text-foreground hover:text-primary"> 300 fois </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-md border border-dashed border-border p-4 text-center">
+      <small class="text-muted-foreground">Visonnée</small>
+      <h1 class="text-3xl font-semibold text-foreground">400 fois</h1>
+      <!-- <span class="text-lg font-semibold text-muted-foreground">{{ nft.price | currency }}</span> -->
+      <div class="mt-3 text-xs text-muted-foreground">Ajoutée depuis</div>
+      <div class="font-semibold text-foreground">03j 02h 03m</div>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <button id="share-ref" (click)="shareRef(ref)"
+        class="flex justify-center items-center gap-2  rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground ">
+        <svg viewBox="0 0 24 24" width="18px" height="18px" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M10.0464 14C8.54044 12.4882 8.67609 9.90087 10.3494 8.22108L15.197 3.35462C16.8703 1.67483 19.4476 1.53865 20.9536 3.05046C22.4596 4.56228 22.3239 7.14956 20.6506 8.82935L18.2268 11.2626"
+              stroke="#fff" stroke-width="1.5" stroke-linecap="round"></path>
+            <path
+              d="M13.9536 10C15.4596 11.5118 15.3239 14.0991 13.6506 15.7789L11.2268 18.2121L8.80299 20.6454C7.12969 22.3252 4.55237 22.4613 3.0464 20.9495C1.54043 19.4377 1.67609 16.8504 3.34939 15.1706L5.77323 12.7373"
+              stroke="#fff" stroke-width="1.5" stroke-linecap="round"></path>
+          </g>
+        </svg>
+        <span>Partages la ref !</span>
+      </button>
+      <button
+        class="lex-none rounded-md bg-card px-4 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
+        Visionner
+      </button>
+    </div>
+  </div>
+</div>

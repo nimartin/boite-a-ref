@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, getDocs, limit, orderBy, query } from '@angular/fire/firestore';
 import { Observable, from, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, finalize, map, switchMap } from 'rxjs/operators';
 import { Ref } from '../modules/dashboard/models/ref';
+import { AlgoliaService } from './algolia.service';
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@angular/fire/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { doc, increment, updateDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RefService {
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore, private algoliaService: AlgoliaService,  private http: HttpClient, private storage: Storage) { }
 
   getRefs(): Observable<Ref[]> {
     const refCollection = collection(this.firestore, 'ref');
@@ -41,17 +46,73 @@ export class RefService {
   saveRef(ref: Omit<Ref, 'id'>): Observable<Ref> {
     const refCollection = collection(this.firestore, 'ref');
     const savePromise = addDoc(refCollection, ref);
+
     return from(savePromise).pipe(
-      map(docRef => {
-        const createdRef: Ref = {
-          id: docRef.id,
-          ...ref
-        };
-        return createdRef;
+      switchMap(docRef => {
+        const refId = docRef.id;
+        const filePath = `thumbnails/${refId}.jpg`;
+
+        return from(this.uploadThumbnailFromUrl(ref.tiktokVideoThumbnail, filePath)).pipe(
+          map(downloadUrl => {
+            console.log('Thumbnail uploaded to:', downloadUrl);
+            const updatedRef: Ref = {
+              id: refId,
+              ...ref,
+              tiktokVideoThumbnail: downloadUrl
+            };
+            return updatedRef;
+          })
+        );
       }),
       catchError((error) => {
-        console.error('Error saving ref:', error);
-        return throwError(() => new Error('Failed to save ref'));
+        console.error('Error saving ref or uploading thumbnail:', error);
+        return throwError(() => new Error('Failed to save ref or upload thumbnail'));
+      })
+    );
+  }
+
+  getTopRefs(): Observable<Ref[]> {
+    // call firebase and get top 3 refs order by memeRef
+    const refCollection = collection(this.firestore, 'ref');
+    const top3Query = query(refCollection, orderBy('memeAuthor', 'desc'), limit(3));
+    const docsPromise = getDocs(top3Query);
+    return from(docsPromise).pipe(
+      map(response => {
+        return response.docs.map(doc => {
+          const data = doc.data() as Omit<Ref, 'id'>;
+          return { id: doc.id, ...data } as Ref;
+        });
+      })
+    );
+  }
+
+  searchRefs(query: string): Observable<Ref[]> {
+    return this.algoliaService.search(query);
+  }
+
+  uploadThumbnailFromUrl(url: string, filePath: string): Promise<string> {
+    return this.http.get(url, { responseType: 'blob' }).toPromise().then((blob) => {
+      if (!blob) {
+        throw new Error('Failed to fetch image blob from URL');
+      }
+      const fileRef = ref(this.storage, filePath);
+      console.log('Uploading thumbnail to:', filePath);
+
+      return uploadBytes(fileRef, blob).then(() => {
+        console.log('Thumbnail uploaded to:', filePath);
+        return getDownloadURL(fileRef);
+      });
+    }) as Promise<string>;
+  }
+
+  updateShareCount(refId: string): Observable<void> {
+    const refDoc = doc(this.firestore, `ref/${refId}`);
+    const updatePromise = updateDoc(refDoc, { shareCount: increment(1) });
+
+    return from(updatePromise).pipe(
+      catchError((error) => {
+        console.error('Error updating share count:', error);
+        return throwError(() => new Error('Failed to update share count'));
       })
     );
   }

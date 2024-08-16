@@ -1,6 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TikTokService } from '../../../core/services/tiktok.service';
+import { TikTokService } from '../../../api/tiktok.service';
 import { Ref } from '../../dashboard/models/ref';
 import { Observable } from 'rxjs';
 import { RefService } from '../../../api/ref.service';
