@@ -16,14 +16,18 @@ export class ThemeService {
   }
 
   private loadTheme() {
-    const theme = localStorage.getItem('theme');
-    if (theme) {
-      this.theme.set(JSON.parse(theme));
+    if (typeof window !== 'undefined' && localStorage) {
+      const theme = localStorage.getItem('theme');
+      if (theme) {
+        this.theme.set(JSON.parse(theme));
+      }
     }
   }
 
   private setTheme() {
-    localStorage.setItem('theme', JSON.stringify(this.theme()));
+    if (typeof window !== 'undefined' && localStorage) {
+      localStorage.setItem('theme', JSON.stringify(this.theme()));
+    }
     this.setThemeClass();
   }
 
