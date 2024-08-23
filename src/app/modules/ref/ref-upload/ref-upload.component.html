@@ -1,8 +1,7 @@
 <!-- login form -->
 
-<div
-  class="flex flex-col lg:flex-row justify-center gap-10 mx-auto px-4 py-4 sm:px-8 lg:container items-center min-h-full">
-  <div>
+<div class="flex flex-col lg:flex-row justify-center gap-10 mx-auto px-4 py-4 sm:px-8 lg:container min-h-full">
+  <div class="flex items-center">
     <form class=" lg:my-10 space-y-6 " [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="">
         <h2 class="mb-1 text-3xl font-semibold text-foreground">Tu veux ajouter une <span
@@ -135,17 +134,13 @@
 
 
   </div>
-  <div class="" id="tiktok-viewer">
+  <div id="tiktok-viewer">
     <ngx-skeleton-loader *ngIf="!ref || !ref.tiktokVideoId || !isLoaded" adivpearance="circle"
       [theme]="{
-          'background-color':'#d9cde6', width: '300px', height: '70vh', 'animation-duration': '2s', 'border-radius':'10px' }">
+          'background-color':'#d9cde6', width: '300px', height: '100%', 'animation-duration': '2s', 'border-radius':'10px' }">
     </ngx-skeleton-loader>
-    <div *ngIf=" ref && ref.tiktokVideoId" [class.hidden]="!isLoaded">
-      <blockquote [attr.cite]="ref.tiktokVideoCite" [attr.data-video-id]="ref.tiktokVideoId" class="tiktok-embed"
-        auto-play="0">
-        <section>
-        </section>
-      </blockquote>
+    <div *ngIf=" ref && ref.tiktokVideoId !isLoaded" class="h-full">
+      <iframe width="100%" height="100%" [src]="tiktokVideoUrl" allow="fullscreen" title="test"></iframe>
     </div>
   </div>
 </div>

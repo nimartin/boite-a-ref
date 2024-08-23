@@ -5,6 +5,7 @@ import { Ref } from '../../dashboard/models/ref';
 import { Observable } from 'rxjs';
 import { RefService } from '../../../api/ref.service';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-ref-upload',
   templateUrl: './ref-upload.component.html',
@@ -18,7 +19,8 @@ export class RefUploadComponent {
   public uploadState: UploadState = UploadState.EMPTY;
   public uploadStateEnum = UploadState;
 
-  constructor(public formBuilder: FormBuilder, private el: ElementRef, private tiktokService: TikTokService, private refService: RefService, private router: Router) {
+  constructor(public formBuilder: FormBuilder, private el: ElementRef, private tiktokService: TikTokService,
+    private refService: RefService, private router: Router, private sanitizer: DomSanitizer) {
     this.ref = {
       id: '',
       title: '',
@@ -74,7 +76,6 @@ export class RefUploadComponent {
           this.ref.tiktokVideoCite = tiktokRef.tiktokVideoCite;
           this.ref.tiktokVideoHtml = tiktokRef.tiktokVideoHtml;
           this.ref.tiktokVideoThumbnail = tiktokRef.tiktokVideoThumbnail;
-          this.tiktokService.loadScript();
           setTimeout(() => {
             this.uploadState = UploadState.LOADED;
           }, 2000)
@@ -181,6 +182,14 @@ export class RefUploadComponent {
 
   get showModal(): boolean {
     return this.uploadState === UploadState.UPLOAD || this.uploadState === UploadState.ERROR;
+  }
+
+  get tiktokVideoUrl(): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.tiktok.com/player/v1/' + this.ref?.tiktokVideoId + this.params);
+  }
+
+  get params(): string {
+    return '?&music_info=1&description=1&loop=1';
   }
 }
 

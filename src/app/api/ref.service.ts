@@ -57,14 +57,19 @@ export class RefService {
         const filePath = `thumbnails/${refId}.jpg`;
 
         return from(this.uploadThumbnailFromUrl(ref.tiktokVideoThumbnail, filePath)).pipe(
-          map(downloadUrl => {
+          switchMap(downloadUrl => {
             console.log('Thumbnail uploaded to:', downloadUrl);
             const updatedRef: Ref = {
               id: refId,
               ...refWithTimestamp,
               tiktokVideoThumbnail: downloadUrl
             };
-            return updatedRef;
+
+            // Mettre à jour le document dans Firestore avec l'URL de la miniature
+            const refDoc = doc(this.firestore, `ref/${refId}`);
+            return from(updateDoc(refDoc, { tiktokVideoThumbnail: downloadUrl })).pipe(
+              map(() => updatedRef)
+            );
           })
         );
       }),
@@ -74,6 +79,7 @@ export class RefService {
       })
     );
   }
+
 
   getTopRefs(): Observable<Ref[]> {
     // call firebase and get top 3 refs order by memeRef
@@ -112,6 +118,19 @@ export class RefService {
   updateShareCount(refId: string): Observable<void> {
     const refDoc = doc(this.firestore, `ref/${refId}`);
     const updatePromise = updateDoc(refDoc, { shareCount: increment(1) });
+
+    return from(updatePromise).pipe(
+      catchError((error) => {
+        console.error('Error updating share count:', error);
+        return throwError(() => new Error('Failed to update share count'));
+      })
+    );
+  }
+
+  updateViewCount(refId: string): Observable<void> {
+    const refDoc = doc(this.firestore, `ref/${refId}`);
+    console.log('Incrementing view count for ref:', refId);
+    const updatePromise = updateDoc(refDoc, { viewCount: increment(1) });
 
     return from(updatePromise).pipe(
       catchError((error) => {

@@ -8,5 +8,6 @@ export interface Ref {
   tiktokVideoThumbnail: string;
   tiktokVideoHtml: string;
   shareCount?: number;
+  viewCount?: number;
   uploadAt?: Date;
 }

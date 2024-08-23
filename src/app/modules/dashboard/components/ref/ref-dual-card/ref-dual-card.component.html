@@ -1,8 +1,8 @@
-<div class="flex max-h-[420px]  flex-col rounded-lg bg-background p-8 sm:flex-row" *ngIf="ref">
+<div class="flex flex-col rounded-lg bg-background p-8 sm:flex-row" *ngIf="ref">
   <div
     class=" relative  flex-1 cursor-pointer rounded-md bg-cover transition duration-150 ease-in-out hover:opacity-75 flex justify-center">
 
-    <img class="h-full object-cover z-10" [src]="ref.tiktokVideoThumbnail" alt="thumbnail">
+    <img class="h-full object-cover z-1 w-1/2 " [src]="ref.tiktokVideoThumbnail" alt="thumbnail">
     <div class="absolute inset-0 bg-center  bg-repeat bg-contain opacity-30 rounded-md"
       style="filter: grayscale(100%) brightness(50%);"
       [style.background-image]="'url(' + ref.tiktokVideoThumbnail + ')'">
@@ -20,7 +20,7 @@
       <div class="flex items-center space-x-2">
         <div class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-center">
           <span class="text-xs font-semibold text-primary-foreground">
-            <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+            <svg fill="#fff" height="16px" width="16px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 964.07 964.07" xml:space="preserve">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -48,16 +48,16 @@
       <div class="flex items-center space-x-2">
         <div class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-center">
           <span class="text-xs font-semibold text-primary-foreground">
-            <svg viewBox="0 0 24 24" width="20px" height="20px" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24" width="18px" height="18px" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
               <g id="SVGRepo_iconCarrier">
                 <path
                   d="M10.0464 14C8.54044 12.4882 8.67609 9.90087 10.3494 8.22108L15.197 3.35462C16.8703 1.67483 19.4476 1.53865 20.9536 3.05046C22.4596 4.56228 22.3239 7.14956 20.6506 8.82935L18.2268 11.2626"
-                  stroke="black" stroke-width="1.5" stroke-linecap="round"></path>
+                  stroke="#fff" stroke-width="1.5" stroke-linecap="round"></path>
                 <path
                   d="M13.9536 10C15.4596 11.5118 15.3239 14.0991 13.6506 15.7789L11.2268 18.2121L8.80299 20.6454C7.12969 22.3252 4.55237 22.4613 3.0464 20.9495C1.54043 19.4377 1.67609 16.8504 3.34939 15.1706L5.77323 12.7373"
-                  stroke="black" stroke-width="1.5" stroke-linecap="round"></path>
+                  stroke="#fff" stroke-width="1.5" stroke-linecap="round"></path>
               </g>
             </svg>
           </span>
@@ -65,14 +65,14 @@
 
         <div class="flex flex-col">
           <small class="text-xs text-muted-foreground">Partagée</small>
-          <a href="" class="text-xs font-semibold text-foreground hover:text-primary"> {{ref.shareCount}} fois </a>
+          <a href="" class="text-xs font-semibold text-foreground hover:text-primary"> {{shareCount}} fois </a>
         </div>
       </div>
     </div>
 
     <div class="rounded-md border border-dashed border-border p-4 text-center">
       <small class="text-muted-foreground">Visonnée</small>
-      <h1 class="text-3xl font-semibold text-foreground">400 fois</h1>
+      <h1 class="text-3xl font-semibold text-foreground">{{viewCount}} fois</h1>
       <!-- <span class="text-lg font-semibold text-muted-foreground">{{ nft.price | currency }}</span> -->
       <div class="mt-3 text-xs text-muted-foreground">Ajoutée depuis</div>
       <div class="font-semibold text-foreground">03j 02h 03m</div>
@@ -81,16 +81,13 @@
     <div class="flex items-center justify-between">
       <button id="share-ref" (click)="shareRef(ref)"
         class="flex justify-center items-center gap-2  rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground ">
-        <svg viewBox="0 0 24 24" width="18px" height="18px" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24px" height="24px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
           <g id="SVGRepo_iconCarrier">
             <path
-              d="M10.0464 14C8.54044 12.4882 8.67609 9.90087 10.3494 8.22108L15.197 3.35462C16.8703 1.67483 19.4476 1.53865 20.9536 3.05046C22.4596 4.56228 22.3239 7.14956 20.6506 8.82935L18.2268 11.2626"
-              stroke="#fff" stroke-width="1.5" stroke-linecap="round"></path>
-            <path
-              d="M13.9536 10C15.4596 11.5118 15.3239 14.0991 13.6506 15.7789L11.2268 18.2121L8.80299 20.6454C7.12969 22.3252 4.55237 22.4613 3.0464 20.9495C1.54043 19.4377 1.67609 16.8504 3.34939 15.1706L5.77323 12.7373"
-              stroke="#fff" stroke-width="1.5" stroke-linecap="round"></path>
+              d="M13.47 4.13998C12.74 4.35998 12.28 5.96 12.09 7.91C6.77997 7.91 2 13.4802 2 20.0802C4.19 14.0802 8.99995 12.45 12.14 12.45C12.34 14.21 12.79 15.6202 13.47 15.8202C15.57 16.4302 22 12.4401 22 9.98006C22 7.52006 15.57 3.52998 13.47 4.13998Z"
+              stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
           </g>
         </svg>
         <span>Partages la ref !</span>

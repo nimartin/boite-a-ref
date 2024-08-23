@@ -32,7 +32,7 @@ export class RefDualCardComponent {
 
     setTimeout(() => {
       if (spanElement) {
-        spanElement.innerText = 'Partages Là !';
+        spanElement.innerText = 'Partages La ref !';
       }
       element.classList.remove('bg-muted');
       element.classList.add('bg-primary');
@@ -52,6 +52,12 @@ export class RefDualCardComponent {
       });
   }
 
+  get viewCount(): string {
+    return this.ref?.viewCount?.toString() ?? '0';
+  }
 
+  get shareCount(): string {
+    return this.ref?.shareCount?.toString() ?? '0';
+  }
 
 }
