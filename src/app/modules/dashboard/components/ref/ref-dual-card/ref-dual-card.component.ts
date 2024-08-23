@@ -3,6 +3,7 @@ import { Ref } from '../../../models/ref';
 import { NgIf, NgStyle } from '@angular/common';
 import { environment } from '../../../../../../environments/environment';
 import { RefService } from '../../../../../api/ref.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: '[app-ref-dual-card]',
@@ -14,7 +15,7 @@ import { RefService } from '../../../../../api/ref.service';
 export class RefDualCardComponent {
   @Input() ref: Ref = {} as Ref;
 
-  constructor(private refService: RefService,) {}
+  constructor(private refService: RefService, private router: Router) {}
 
   ngOnInit(): void { }
 
@@ -58,6 +59,10 @@ export class RefDualCardComponent {
 
   get shareCount(): string {
     return this.ref?.shareCount?.toString() ?? '0';
+  }
+
+  navigateToRef(ref: Ref){
+    this.router.navigate(['ref', ref.id]);
   }
 
 }
