@@ -11,7 +11,7 @@ export class ThemeService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
-      this.loadTheme();
+      // this.loadTheme();
       effect(() => {
         this.setTheme();
       });
