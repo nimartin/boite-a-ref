@@ -2,6 +2,7 @@ import { Component, ElementRef, QueryList, ViewChildren, inject } from '@angular
 import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 import { RouterOutlet } from '@angular/router';
 import { Ref } from './modules/dashboard/models/ref';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent {
   refs : Ref[] = [];
 
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef, private themeService: ThemeService) { }
 
 
   ngOnInit() {

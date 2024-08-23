@@ -10,8 +10,9 @@ export class ThemeService {
   public theme = signal<Theme>({ mode: 'light', color: 'base' });
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    console.log('ThemeService');
     if (isPlatformBrowser(this.platformId)) {
-      // this.loadTheme();
+      this.loadTheme();
       effect(() => {
         this.setTheme();
       });
@@ -20,12 +21,13 @@ export class ThemeService {
 
   public loadTheme() {
     if (isPlatformBrowser(this.platformId)) {
-      if (localStorage) {
-        const theme = localStorage.getItem('theme');
-        if (theme) {
-          this.theme.set(JSON.parse(theme));
-        }
-      }
+      // if (localStorage) {
+      //   const theme = localStorage.getItem('theme');
+      //   if (theme) {
+      //     this.theme.set(JSON.parse(theme));
+      //   }
+      // }
+      this.theme.set({ mode: 'light', color: 'base' });
     }
 
   }
