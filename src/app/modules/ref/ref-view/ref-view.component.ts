@@ -18,6 +18,7 @@ export class RefViewComponent  implements OnInit
 {
 
   public ref: Ref | undefined;
+  public tiktokVideoUrl: SafeUrl | undefined;
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private sanitizer: DomSanitizer, private refService: RefService) {
   }
@@ -39,13 +40,14 @@ export class RefViewComponent  implements OnInit
       const refData = { id: docSnap.id, ...docSnap.data() } as Ref; // Combine l'ID et les données du document
       this.ref = refData;
       this.refService.updateViewCount(refData.id);
+      this.tiktokVideoUrl = this.getTiktokVideoUrl();
     } else {
       console.log("No such document!");
     }
 
   }
 
-  get tiktokVideoUrl(): SafeUrl {
+  getTiktokVideoUrl(): SafeUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.tiktok.com/player/v1/' + this.ref?.tiktokVideoId + this.params);
   }
 
