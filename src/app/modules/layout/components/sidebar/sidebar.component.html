@@ -3,20 +3,22 @@
   <div class="px-4">
     <!-- Logo -->
     <div class="relative h-10">
+
       <div class="flex items-center" *ngIf="menuService.showSideBar">
         <a (click)="toggleSidebar()"
-          class="flex cursor-pointer items-center justify-center rounded bg-primary p-2 focus:outline-none focus:ring-1">
-          <svg-icon src="assets/icons/logo.svg"> </svg-icon>
+          class="flex cursor-pointer items-center justify-center rounded  p-2 focus:outline-none focus:ring-1">
+          <img class="h-8 w-auto" src="assets/images/logo.png" alt="Logo">
+
         </a>
-        <b class="ml-1 pl-2 text-sm font-bold text-foreground">
+        <b class="ml-1 pl-2 text-base font-bold text-foreground">
           J'ai la ref !
         </b>
       </div>
-      <button (click)="toggleSidebar()"
+      <!-- <button (click)="toggleSidebar()"
         class="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded text-muted-foreground/50 transition-all duration-200 focus:outline-none hover:text-muted-foreground"
         [ngClass]="{ 'rotate-180': !menuService.showSideBar }">
         <svg-icon src="assets/icons/heroicons/solid/chevron-double-left.svg"> </svg-icon>
-      </button>
+      </button> -->
     </div>
 
     <!-- Separator -->

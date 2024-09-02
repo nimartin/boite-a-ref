@@ -4,6 +4,7 @@ import { NavbarMobileComponent } from './navbar-mobile/navbar-mobilecomponent';
 import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 import { NavbarMenuComponent } from './navbar-menu/navbar-menu.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
     selector: 'app-navbar',
@@ -15,6 +16,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
         NavbarMenuComponent,
         ProfileMenuComponent,
         NavbarMobileComponent,
+        SearchBarComponent
     ],
 })
 export class NavbarComponent implements OnInit {
