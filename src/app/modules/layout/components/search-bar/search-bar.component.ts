@@ -39,7 +39,10 @@ export class SearchBarComponent implements OnInit {
   }
 
   callSearch(searchText: string): void {
-
+    if (searchText.length === 0) {
+      this.refs = [];  // Réinitialise les résultats de recherche
+      return;
+    }
     this.refService.searchRefs(searchText).subscribe({
       next: (refs) => {
         console.log(refs);
