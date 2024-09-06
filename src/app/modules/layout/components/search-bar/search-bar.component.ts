@@ -76,6 +76,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   onResultClick(ref: Ref): void {
+    this.displayMobileSearch(false);
     this.router.navigate(['/ref', ref.id]);  // Redirige vers une page de détail par exemple
   }
 

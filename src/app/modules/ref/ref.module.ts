@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RefModalComponent } from './ref-upload/ref-modal/ref-modal.component';
+import { RefTutoComponent } from './ref-tuto/ref-tuto.component';
 
 @NgModule({
   declarations: [RefUploadComponent],
@@ -19,7 +20,8 @@ import { RefModalComponent } from './ref-upload/ref-modal/ref-modal.component';
     NgxSkeletonLoaderModule.forRoot(),
     ReactiveFormsModule,
     ButtonComponent,
-    RefModalComponent
+    RefModalComponent,
+    RefTutoComponent
   ]
 })
 export class RefModule { }

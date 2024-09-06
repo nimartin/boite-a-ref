@@ -24,7 +24,7 @@
         </div>
         <a class="cursor-pointer" *ngIf=" isIconEmptyVisible" (click)="redirectToUpload()"
           class="text-sm font-semibold text-primary cursor-pointer">
-          Ajoutes là !
+          Ajoute la !
         </a>
       </div>
       <ul *ngIf=" refs.length> 0">
@@ -275,14 +275,14 @@
       </div>
       <div class="text-center" *ngIf="isIconEmptyVisible">
         <p class="text-xl md:text-2xl font-bold text-gray-800">
-          Ecris correctement... On a rien trouvé.
+          Ecris correctement... On n'a rien trouvé.
         </p>
         <p class="text-base md:text-lg text-gray-500">Ou peut-être qu'on l'a pas j'avoue.
         </p>
       </div>
       <button *ngIf="isIconEmptyVisible" (click)="redirectToUpload()"
         class="flex justify-center items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground">
-        Ajoutes là !
+        Ajoute la !
       </button>
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, getDocs, limit, orderBy, query } from '@angular/fire/firestore';
-import { Observable, from, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, from, throwError } from 'rxjs';
 import { catchError, finalize, map, switchMap } from 'rxjs/operators';
 import { Ref } from '../modules/dashboard/models/ref';
 import { AlgoliaService } from './algolia.service';
@@ -14,7 +14,16 @@ import { doc, increment, updateDoc } from 'firebase/firestore';
 })
 export class RefService {
 
+
   constructor(private firestore: Firestore, private algoliaService: AlgoliaService,  private http: HttpClient, private storage: Storage) { }
+
+  private refTutoSubject = new BehaviorSubject<boolean>(false);
+  public refTuto: Observable<boolean> = this.refTutoSubject.asObservable();
+
+  setShowRefTuto(value: boolean): void {
+    this.refTutoSubject.next(value);
+  }
+
 
   getRefs(): Observable<Ref[]> {
     const refCollection = collection(this.firestore, 'ref');

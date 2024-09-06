@@ -77,7 +77,7 @@ export class RefViewComponent  implements OnInit
 
     setTimeout(() => {
       if (spanElement) {
-        spanElement.innerText = 'Partages la ref !';
+        spanElement.innerText = 'Partage la ref !';
       }
       element.classList.remove('bg-muted');
       element.classList.add('bg-primary');

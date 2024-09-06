@@ -151,6 +151,10 @@ export class RefUploadComponent {
     }
   }
 
+  openTuto(): void {
+    this.refService.setShowRefTuto(true);
+  }
+
 
   get loadingText(): string{
     // If the upload state is loading return loading state

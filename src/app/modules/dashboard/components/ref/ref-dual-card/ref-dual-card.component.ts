@@ -33,7 +33,7 @@ export class RefDualCardComponent {
 
     setTimeout(() => {
       if (spanElement) {
-        spanElement.innerText = 'Partages La ref !';
+        spanElement.innerText = 'Partage La ref !';
       }
       element.classList.remove('bg-muted');
       element.classList.add('bg-primary');
