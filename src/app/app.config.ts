@@ -1,6 +1,6 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideClientHydration } from '@angular/platform-browser';
+import { HammerModule, provideClientHydration } from '@angular/platform-browser';
 
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
@@ -23,7 +23,8 @@ export const appConfig: ApplicationConfig = {
     provideStorage(() => getStorage()),
     importProvidersFrom(
       [
-        HttpClientModule
+        HttpClientModule,
+        HammerModule
       ]
     ),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

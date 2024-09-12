@@ -1,7 +1,7 @@
 <div *ngIf="displayed" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center z-50"
-  (swipeleft)="prevStep()" (swiperight)="nextStep()">
+  (swipeleft)="nextStep()" (swiperight)="prevStep()">
   <div
-    class="relative bg-white p-6 md:rounded-lg shadow-lg w-full h-full sm:w-full sm:h-full md:w-1/2 md:max-w-lg md:h-auto mx-0 md:mx-4">
+    class="flex flex-col relative bg-white p-6 md:rounded-lg shadow-lg w-full h-full sm:w-full sm:h-full md:w-1/2 md:max-w-lg md:h-auto mx-0 md:mx-4">
     <!-- Croix de fermeture -->
     <button (click)="close()" class="absolute top-4 right-6 text-gray-600 hover:text-gray-800 focus:outline-none">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -11,7 +11,7 @@
     </button>
 
     <!-- Contenu du tutoriel -->
-    <div class="tutorial-step my-6">
+    <div class="tutorial-step my-6 flex-1">
       <div class="flex justify-center items-center w-full h-40 bg-gray-100 rounded-lg mb-4">
         <!-- Placeholder for SVG images -->
         <img class="h-32 w-32" [src]="steps[currentStep].img" />

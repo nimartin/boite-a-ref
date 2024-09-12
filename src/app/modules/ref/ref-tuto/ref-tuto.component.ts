@@ -6,7 +6,7 @@ import { HammerModule } from '@angular/platform-browser';
 @Component({
   selector: 'app-ref-tuto',
   standalone: true,
-  imports: [NgIf, NgFor, NgClass, HammerModule],
+  imports: [NgIf, NgFor, NgClass],
   templateUrl: './ref-tuto.component.html',
   styleUrl: './ref-tuto.component.scss'
 })
