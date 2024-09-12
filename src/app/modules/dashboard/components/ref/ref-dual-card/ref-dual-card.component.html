@@ -1,7 +1,7 @@
-<div class="flex flex-col rounded-lg bg-background p-4 md:p-8 sm:flex-row" *ngIf="ref">
+<div class="flex flex-col rounded-lg bg-background p-4 md:p-8 sm:flex-row cursor-pointer" *ngIf="ref"
+  (click)="navigateToRef(ref)">
   <div
-    class=" relative  flex-1 cursor-pointer rounded-md bg-cover transition duration-150 ease-in-out hover:opacity-75 flex justify-center"
-    (click)="navigateToRef(ref)">
+    class=" relative  flex-1 cursor-pointer rounded-md bg-cover transition duration-150 ease-in-out hover:opacity-75 flex justify-center">
 
     <img class="h-full object-cover z-1 w-1/2 " [src]="ref.tiktokVideoThumbnail" alt="thumbnail">
     <div class="absolute inset-0 bg-center  bg-repeat bg-contain opacity-30 rounded-md"
@@ -80,7 +80,7 @@
     </div>
 
     <div class="flex items-center justify-between">
-      <button id="share-ref" (click)="shareRef(ref)"
+      <button id="share-ref" (click)="shareRef(ref, $event)"
         class="flex justify-center items-center gap-2  rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground ">
         <svg width="24px" height="24px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

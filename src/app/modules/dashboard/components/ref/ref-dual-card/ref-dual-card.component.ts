@@ -19,7 +19,9 @@ export class RefDualCardComponent {
 
   ngOnInit(): void { }
 
-  public shareRef(ref: Ref): void {
+  public shareRef(ref: Ref, event: any): void {
+
+    event.stopPropagation();
 
     //spanElement = get element by id "share-ref"
     const element = (document.getElementById('share-ref') as HTMLElement);

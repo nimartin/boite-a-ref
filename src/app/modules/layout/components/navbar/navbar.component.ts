@@ -5,6 +5,7 @@ import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 import { NavbarMenuComponent } from './navbar-menu/navbar-menu.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
@@ -20,11 +21,16 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
     ],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private menuService: MenuService) {}
+  constructor(private menuService: MenuService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  public toggleMobileMenu(): void {
+  public toggleMobileMenu(event: any): void {
+    event.stopImmediatePropagation();
     this.menuService.showMobileMenu = true;
+  }
+
+  public navigateToHome(): void {
+    this.router.navigate(['/']);
   }
 }

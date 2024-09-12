@@ -3,7 +3,7 @@
     <div class="flex items-center  py-2.5 ">
       <!-- Mobile Navigation Menu Button-->
       <div class="sm:order-1 md:hidden  px-4">
-        <button (click)="toggleMobileMenu()" type="button"
+        <button (click)="toggleMobileMenu($event)" type="button"
           class="inline-flex items-center justify-center rounded-md bg-muted p-2 text-muted-foreground focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary hover:bg-muted-foreground hover:text-muted"
           aria-expanded="false">
           <span class="sr-only">Open menu</span>
@@ -16,8 +16,8 @@
       <!-- Mobile header -->
       <div class="flex flex-1 items-center justify-between sm:order-2 md:mr-10 md:hidden">
         <div class="flex items-center justify-center w-full">
-          <img class="h-8 w-auto" src="assets/images/logo.png" alt="Logo">
-          <b class="text-base font-bold text-foreground">
+          <img class="h-8 w-auto" src="assets/images/logo.png" alt="Logo" (click)="navigateToHome()">
+          <b class="text-base font-bold text-foreground" (click)="navigateToHome()">
             J'ai la ref !
           </b>
         </div>

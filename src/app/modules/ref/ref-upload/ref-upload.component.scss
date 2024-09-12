@@ -13,13 +13,13 @@ svg {
 
 
 @media screen and (max-width: 1280px) {
-  svg{
+  .svg-arrow{
     max-width: 100px;
   }
 }
 
 @media screen and (max-width: 1024px) {
-  svg{
+  .svg-arrow{
     max-height: 100px;
     transform: rotate(120deg);
   }

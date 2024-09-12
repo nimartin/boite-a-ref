@@ -147,7 +147,7 @@ export class RefUploadComponent {
     if (this.uploadState === UploadState.UPLOAD) {
       this.router.navigate(['/dashboard/refs']);
     } else {
-      this.router.navigate(['/ref/tutorial']);
+      this.openTuto();
     }
   }
 
