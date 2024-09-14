@@ -1,3 +1,5 @@
+import { SafeUrl } from "@angular/platform-browser";
+
 export interface Ref {
   id: string;
   title: string;
@@ -10,4 +12,5 @@ export interface Ref {
   shareCount?: number;
   viewCount?: number;
   uploadAt?: Date;
+  tiktokVideoUrl?: SafeUrl;
 }

@@ -37,4 +37,31 @@ export class AlgoliaService {
       })
     );
   }
+
+  // Fonction de recherche avec filtres (par exemple, par date ou autre critère)
+  searchWithFilters(query: string, filters: string, page: number = 0, hitsPerPage: number = 10): Observable<Ref[]> {
+    return from(this.index.search(query, {
+      page, // Numéro de la page
+      hitsPerPage, // Nombre de résultats par page
+      filters, // Filtres supplémentaires à ajouter
+    })).pipe(
+      map((result: any) => {
+        return result.hits.map((hit: any) => {
+          return {
+            id: hit.objectID,
+            title: hit.title,
+            memeAuthor: hit.memeAuthor,
+            memeRef: hit.memeRef,
+            tiktokVideoId: hit.tiktokVideoId,
+            tiktokVideoCite: hit.tiktokVideoCite,
+            tiktokVideoThumbnail: hit.tiktokVideoThumbnail,
+            tiktokVideoHtml: hit.tiktokVideoHtml,
+            shareCount: hit.shareCount,
+            viewCount: hit.viewCount,
+            uploadAt: hit.uploadAt,
+          } as Ref;
+        });
+      })
+    );
+  }
 }

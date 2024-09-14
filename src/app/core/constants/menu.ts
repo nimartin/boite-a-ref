@@ -3,12 +3,22 @@ import { MenuItem } from '../models/menu.model';
 export class Menu {
   public static pages: MenuItem[] = [
     {
-      group: 'Base',
+      group: 'Contenu',
       separator: false,
       items: [
         {
           icon: 'assets/icons/heroicons/outline/chart-pie.svg',
-          label: 'Home',
+          label: 'Refs',
+          route: '/ref',
+          // children: [
+          //   { label: 'Nfts', route: '/dashboard/nfts' },
+          //   { label: 'refs', route: '/dashboard/refs' },
+          //   { label: 'Podcast', route: '/dashboard/podcast' },
+          // ],
+        },
+        {
+          icon: 'assets/icons/heroicons/outline/chart-pie.svg',
+          label: 'En ce moment',
           route: '/dashboard/refs',
           // children: [
           //   { label: 'Nfts', route: '/dashboard/nfts' },
@@ -16,6 +26,7 @@ export class Menu {
           //   { label: 'Podcast', route: '/dashboard/podcast' },
           // ],
         },
+
         // {
         //   icon: 'assets/icons/heroicons/outline/lock-closed.svg',
         //   label: 'Auth',

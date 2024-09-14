@@ -7,7 +7,7 @@ import { AlgoliaService } from './algolia.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@angular/fire/storage';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { doc, increment, updateDoc } from 'firebase/firestore';
+import { doc, increment, startAfter, updateDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +38,9 @@ export class RefService {
     );
   }
 
-  getLastRefs(): Observable<Ref[]> {
+  getLastRefs(count: number = 500): Observable<Ref[]> {
     const refCollection = collection(this.firestore, 'ref');
-    const last10Query = query(refCollection, orderBy('uploadAt', 'desc'), limit(500));
+    const last10Query = query(refCollection, orderBy('uploadAt', 'desc'), limit(count));
     const docsPromise = getDocs(last10Query);
     return from(docsPromise).pipe(
       map(response => {
@@ -107,6 +107,10 @@ export class RefService {
 
   searchRefs(query: string): Observable<Ref[]> {
     return this.algoliaService.search(query);
+  }
+
+  searchRefsWithFilters(query: string, filters: string, page: number, hitsPerPage:number): Observable<Ref[]> {
+    return this.algoliaService.searchWithFilters(query, filters, page, hitsPerPage);
   }
 
   uploadThumbnailFromUrl(url: string, filePath: string): Promise<string> {
