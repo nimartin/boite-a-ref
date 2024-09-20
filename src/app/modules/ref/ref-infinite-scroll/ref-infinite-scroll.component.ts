@@ -3,11 +3,12 @@ import { RefService } from '../../../api/ref.service';
 import { Ref } from '../../dashboard/models/ref';
 import { isPlatformBrowser, NgFor, NgIf } from '@angular/common';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { RefPlayerComponent } from '../ref-player/ref-player.component';
 
 @Component({
   selector: 'app-ref-infinite-scroll',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, RefPlayerComponent],
   templateUrl: './ref-infinite-scroll.component.html',
   styleUrl: './ref-infinite-scroll.component.scss'
 })

@@ -7,7 +7,7 @@ export class Menu {
       separator: false,
       items: [
         {
-          icon: 'assets/icons/heroicons/outline/chart-pie.svg',
+          icon: 'assets/icons/heroicons/outline/home.svg',
           label: 'Refs',
           route: '/ref',
           // children: [
@@ -17,7 +17,7 @@ export class Menu {
           // ],
         },
         {
-          icon: 'assets/icons/heroicons/outline/chart-pie.svg',
+          icon: 'assets/icons/heroicons/outline/fire.svg',
           label: 'En ce moment',
           route: '/dashboard/refs',
           // children: [

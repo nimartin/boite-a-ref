@@ -107,6 +107,7 @@ export class RefUploadComponent {
         }, 2000)
       },
       error: (err) => {
+        console.log('Failed to save ref:', err)
         this.uploadState = UploadState.ERROR;
         ;
       }

@@ -1,7 +1,7 @@
 <div class="  w-full hidden md:flex justify-center h-full">
   <div class="relative flex w-full md:w-1/2">
     <div class="bg-card flex items-center relative flex-1">
-      <input type="text"
+      <input type="text" (click)="onSearchInput($event)"
         class="w-full text-base bg-transparent outline-none border-none focus:outline-none focus:ring-0 focus:border-transparent text-gray-700"
         placeholder="Cherche ta ref..." (input)="onSearchInput($event)" (keydown.enter)="onSearchClick()" />
 

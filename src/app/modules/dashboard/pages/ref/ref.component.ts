@@ -23,22 +23,6 @@ export class RefComponent {
 
 
   ngOnInit() {
-    this.refService.getTopRefs().subscribe(
-      (refs: Ref[]) => {
-        this.refs = refs;
-      }
-    );
-  }
-
-  callSearch(event: any) {
-    console.log(event.target.value);
-    this.refService.searchRefs(event.target.value).subscribe(refs => {
-      console.log(refs);
-    },
-    error => {
-      console.error('Error fetching refs:', error);
-    }
-    );
   }
 
 }
