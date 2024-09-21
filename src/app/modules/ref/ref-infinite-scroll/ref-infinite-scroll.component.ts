@@ -33,7 +33,9 @@ export class RefInfiniteScrollComponent {
   }
 
   ngOnInit(): void {
-    this.loadMoreRefs();
+    if (this.isBrowser) {
+      this.loadMoreRefs();
+    }
   }
 
   ngAfterViewInit() {
