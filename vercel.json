@@ -1,7 +1,7 @@
 {
   "version": 2,
   "public": true,
-  "name": "project",
+  "name": "boite-a-ref",
   "rewrites": [
     {
       "source": "/(.*)",
@@ -10,7 +10,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "dist/project/**"
+      "includeFiles": "dist/boite-a-ref/**"
     }
   }
 }
