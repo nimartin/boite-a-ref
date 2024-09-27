@@ -2,8 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "dist/boite-a-ref/server/main.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "dist/boite-a-ref/browser/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
