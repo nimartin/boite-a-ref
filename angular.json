@@ -15,15 +15,16 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/boite-a-ref/browser",
+            "outputPath": "dist/boite-a-ref",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -31,7 +32,12 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -51,8 +57,8 @@
             },
             "development": {
               "optimization": false,
-              "sourceMap": true,
               "extractLicenses": false,
+              "sourceMap": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -65,61 +71,45 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "boite-a-ref:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "boite-a-ref:build:production"
+              "buildTarget": "boite-a-ref:build:production"
             },
             "development": {
-              "browserTarget": "boite-a-ref:build:development"
+              "buildTarget": "boite-a-ref:build:development"
             }
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/boite-a-ref/server",
-            "main": "src/main.server.ts",
-            "tsConfig": "tsconfig.server.json"
           },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
-            }
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "boite-a-ref:build"
           }
         },
-        "serve-ssr": {
-          "builder": "@angular/ssr-dev-server", // Utilisation du nouveau SSR dev server
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "browserTarget": "boite-a-ref:build",
-            "serverTarget": "boite-a-ref:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "boite-a-ref:build:production",
-              "serverTarget": "boite-a-ref:server:production"
-            }
-          }
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "browserTarget": "boite-a-ref:build:production",
-            "serverTarget": "boite-a-ref:server:production",
-            "routes": ["/"]
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
           }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "b7c6c9aa-9725-4b63-903f-43851936afd8"
   }
 }

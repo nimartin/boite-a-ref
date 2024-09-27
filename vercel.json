@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "builds": [
+  "public": true,
+  "name": "boite-a-ref",
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/node"
+      "source": "/(.*)",
+      "destination": "/api"
     }
   ],
-  "routes": [
-    { "src": "/(.*)", "dest": "dist/boite-a-ref/server/main.js" }
-  ]
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/boite-a-ref/**"
+    }
+  }
 }
