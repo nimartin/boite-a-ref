@@ -39,8 +39,8 @@ export class RefUploadComponent {
 
   public initForm() {
     this.form = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      memeAuthor: ['', [Validators.required]],
+      title: ['' ],
+      memeAuthor: [''],
       memeRef: ['', [Validators.required]],
       tiktokVideoCite: ['', [Validators.required]]
     })
@@ -99,6 +99,10 @@ export class RefUploadComponent {
   }
 
   saveRef(): void{
+    this.ref.title = this.ref.memeAuthor ? `${this.ref.memeAuthor} - ${this.ref.memeRef}` : this.ref.memeRef;
+    if (this.ref.memeAuthor.trim() === '') {
+      this.ref.memeAuthor = 'Inconnu';
+    }
     this.refService.saveRef(this.ref).subscribe({
       next: (createdRef) => {
         console.log('Ref saved successfully:', createdRef)
