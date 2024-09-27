@@ -79,10 +79,10 @@ export class SearchBarComponent implements OnInit {
     this.displayMobileSearch(false);
     this.currentSearchText = '';
     this.refs = [];  // Réinitialise les résultats de recherche
-    this.router.navigate(['/ref', ref.id]);  // Redirige vers une page de détail par exemple
+    this.router.navigate(['/refs', ref.id]);  // Redirige vers une page de détail par exemple
   }
 
   redirectToUpload(): void {
-    this.router.navigate(['/ref/upload']);
+    this.router.navigate(['/refs/upload']);
   }
 }

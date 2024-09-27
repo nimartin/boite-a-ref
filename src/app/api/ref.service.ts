@@ -7,7 +7,7 @@ import { AlgoliaService } from './algolia.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@angular/fire/storage';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { doc, increment, startAfter, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, increment, startAfter, updateDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,25 @@ export class RefService {
 
   setShowRefTuto(value: boolean): void {
     this.refTutoSubject.next(value);
+  }
+
+    getRefById(refId: string): Observable<Ref> {
+      const refDoc = doc(this.firestore, `ref/${refId}`);
+      const docPromise = getDoc(refDoc);
+      return from(docPromise).pipe(
+        map(docSnapshot => {
+          if (docSnapshot.exists()) {
+            const data = docSnapshot.data() as Omit<Ref, 'id'>;
+            return { id: docSnapshot.id, ...data } as Ref;
+          } else {
+            throw new Error('Ref not found');
+          }
+        }),
+        catchError((error) => {
+          console.error('Error fetching ref by id:', error);
+          return throwError(() => new Error('Failed to fetch ref by id'));
+        })
+      );
   }
 
 

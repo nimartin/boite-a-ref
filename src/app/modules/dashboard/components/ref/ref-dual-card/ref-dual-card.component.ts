@@ -64,7 +64,7 @@ export class RefDualCardComponent {
   }
 
   navigateToRef(ref: Ref){
-    this.router.navigate(['ref', ref.id]);
+    this.router.navigate(['refs', ref.id]);
   }
 
 }

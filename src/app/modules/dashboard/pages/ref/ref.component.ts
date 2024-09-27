@@ -13,6 +13,7 @@ import { RefDualCardComponent } from '../../components/ref/ref-dual-card/ref-dua
   templateUrl: './ref.component.html',
   styleUrl: './ref.component.scss'
 })
+
 export class RefComponent {
   public refs: Ref[] = []
   firestore = inject(Firestore);

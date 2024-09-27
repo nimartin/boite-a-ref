@@ -29,6 +29,6 @@ export class RefTableComponent {
 
   navigateToRef(ref: Ref){
     console.log(ref.id)
-    this.router.navigate(['ref', ref.id]);
+    this.router.navigate(['refs', ref.id]);
   }
 }

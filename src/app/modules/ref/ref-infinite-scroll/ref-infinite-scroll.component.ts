@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, QueryList, Vi
 import { RefService } from '../../../api/ref.service';
 import { Ref } from '../../dashboard/models/ref';
 import { isPlatformBrowser, NgFor, NgIf } from '@angular/common';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeUrl, Title } from '@angular/platform-browser';
 import { RefPlayerComponent } from '../ref-player/ref-player.component';
 
 @Component({
@@ -27,6 +27,8 @@ export class RefInfiniteScrollComponent {
   constructor(
     private refService: RefService,
     private sanitizer: DomSanitizer,
+    private meta: Meta,
+    private title: Title,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -35,6 +37,7 @@ export class RefInfiniteScrollComponent {
   ngOnInit(): void {
     if (this.isBrowser) {
       this.loadMoreRefs();
+      this.setMetaDatas();
     }
   }
 
@@ -43,6 +46,19 @@ export class RefInfiniteScrollComponent {
       this.initializeObserver();
     }
   }
+
+  setMetaDatas(): void {
+    const title = 'J\'ai la ref';
+    const desc = 'Découvre les meilleures ref du moment !';
+    this.title.setTitle(title);
+    this.meta.updateTag({
+      name: 'description',
+      content: desc
+    });
+    this.meta.updateTag({ property: 'og:title', content: title });
+    this.meta.updateTag({ property: 'og:description', content: desc });
+  }
+
 
   ngOnDestroy() {
     if (this.observer) {

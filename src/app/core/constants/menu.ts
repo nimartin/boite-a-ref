@@ -9,7 +9,7 @@ export class Menu {
         {
           icon: 'assets/icons/heroicons/outline/home.svg',
           label: 'Refs',
-          route: '/ref',
+          route: '/refs',
           // children: [
           //   { label: 'Nfts', route: '/dashboard/nfts' },
           //   { label: 'refs', route: '/dashboard/refs' },
@@ -57,7 +57,7 @@ export class Menu {
         {
           icon: 'assets/icons/heroicons/outline/upload.svg',
           label: 'Upload',
-          route: '/ref/upload',
+          route: '/refs/upload',
         },
         // {
         //   icon: 'assets/icons/heroicons/outline/gift.svg',

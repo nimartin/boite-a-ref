@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/boite-a-ref/server/server.mjs",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/boite-a-ref/browser/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "dist/boite-a-ref/server/server.mjs" }
+  ]
+}
