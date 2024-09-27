@@ -7,8 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:boite-a-ref": "node dist/boite-a-ref/server/server.mjs",
-    "vercel-build": "ng build && npm run serve:ssr:boite-a-ref"
+    "serve:ssr:boite-a-ref": "node dist/boite-a-ref/server/server.mjs"
   },
   "private": true,
   "dependencies": {
