@@ -2,13 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/boite-a-ref/server/server.mjs",
+      "src": "package.json",
       "use": "@vercel/node"
-    },
-    {
-      "src": "dist/boite-a-ref/browser/**/*",
-      "use": "@vercel/static"
     }
   ],
-   "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "routes": [
+    { "src": "/(.*)", "dest": "dist/boite-a-ref/server/main.js" }
+  ]
 }
