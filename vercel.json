@@ -12,5 +12,6 @@
   ],
   "routes": [
     { "src": "/(.*)", "dest": "dist/boite-a-ref/server/server.mjs" }
-  ]
+  ],
+   "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
