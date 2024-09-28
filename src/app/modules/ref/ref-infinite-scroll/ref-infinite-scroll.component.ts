@@ -56,7 +56,7 @@ export class RefInfiniteScrollComponent {
       content: desc
     });
     this.meta.updateTag({ property: 'og:title', content: title });
-    this.meta.updateTag({ property: 'og:description', content: desc });
+    this.meta.updateTag({ name: 'description', property: 'og:description', content: desc });
   }
 
 
