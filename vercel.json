@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "public": true,
+  "name": "boite-a-ref",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api"
+    }
+  ],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/boite-a-ref/**"
+    }
+  }
+}

@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { inject, NgModule } from '@angular/core';
+import { ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
 import { RefViewComponent } from './ref-view/ref-view.component';
 import { RefUploadComponent } from './ref-upload/ref-upload.component';
 import { RefInfiniteScrollComponent } from './ref-infinite-scroll/ref-infinite-scroll.component';
+import { RefService } from '../../api/ref.service';
 
 const routes: Routes = [
   {
@@ -15,7 +16,13 @@ const routes: Routes = [
   },
   {
     path: ':id', // Route avec paramètre id
-    component: RefViewComponent
+    component: RefViewComponent,
+    data: {
+      resolveRef: (route: ActivatedRouteSnapshot) => {
+        const id = route.paramMap.get('id');
+        return inject(RefService).getRefById(id!); // Retourne un Observable pour les données
+      }
+    }
   }
 
 ];
