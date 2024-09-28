@@ -50,8 +50,8 @@ export class RefViewComponent  implements OnInit
       name: 'description',
       content: desc
     });
-    this.meta.updateTag({ property: 'og:title', content: title });
-    this.meta.updateTag({ property: 'og:description', content: desc });
-    this.meta.updateTag({ property: 'og:image', content: this.ref?.tiktokVideoThumbnail as string});
+    this.meta.updateTag({ name:'title', property: 'og:title', content: title });
+    this.meta.updateTag({ name:'description', property: 'og:description', content: desc });
+    this.meta.updateTag({ name:'image', property: 'og:image', content: this.ref?.tiktokVideoThumbnail as string});
   }
 }
