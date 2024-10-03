@@ -4,6 +4,7 @@ import { RefViewComponent } from './ref-view/ref-view.component';
 import { RefUploadComponent } from './ref-upload/ref-upload.component';
 import { RefInfiniteScrollComponent } from './ref-infinite-scroll/ref-infinite-scroll.component';
 import { RefService } from '../../api/ref.service';
+import { refResolver } from './ref.resolver';
 
 const routes: Routes = [
   {
@@ -17,12 +18,9 @@ const routes: Routes = [
   {
     path: ':id', // Route avec paramètre id
     component: RefViewComponent,
-    data: {
-      resolveRef: (route: ActivatedRouteSnapshot) => {
-        const id = route.paramMap.get('id');
-        return inject(RefService).getRefById(id!); // Retourne un Observable pour les données
-      }
-    }
+    // return data from resolver
+    resolve: { ref: refResolver }
+
   }
 
 ];

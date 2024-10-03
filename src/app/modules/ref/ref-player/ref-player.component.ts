@@ -1,8 +1,8 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges } from '@angular/core';
 import { Ref } from '../../dashboard/models/ref';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { RefService } from '../../../api/ref.service';
-import { NgIf } from '@angular/common';
+import { isPlatformBrowser, NgIf } from '@angular/common';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -13,16 +13,21 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./ref-player.component.scss'],
 })
 export class RefPlayerComponent implements OnChanges {
-  @Input() ref: Ref | undefined;
-  public tiktokVideoUrl: SafeUrl | undefined;
+  @Input('ref') ref!: Ref;
+  public tiktokVideoUrl!: SafeUrl;
 
+  isBrowser: boolean;
   constructor(
     private sanitizer: DomSanitizer,
-    private refService: RefService
-  ) {}
+    private refService: RefService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit(): void {
     this.updateRefData();
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {

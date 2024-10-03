@@ -1,3 +1,5 @@
 <div class="h-full p-4 md:p-8 ">
-  <app-ref-player *ngIf="ref" [ref]="ref"></app-ref-player>
+  <ng-container *ngIf="ref$ | async as ref">
+    <app-ref-player [ref]="ref"></app-ref-player>
+  </ng-container>
 </div>
