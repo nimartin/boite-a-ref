@@ -29,14 +29,14 @@ export class RefViewComponent  implements OnInit
 
   ngOnInit(): void {
     // Assign ref$ so it's available during SSR
-    this.ref$ = this.activatedRoute.data.pipe(map(data => data['ref']));
+    // this.ref$ = this.activatedRoute.data.pipe(map(data => data['ref']));
 
-    // Only execute browser-specific code inside isBrowser()
-    if (this.isBrowser()) {
-      this.ref$.subscribe(ref => {
-        this.setMetaTags(ref);
-      });
-    }
+    // // Only execute browser-specific code inside isBrowser()
+    // if (this.isBrowser()) {
+    //   this.ref$.subscribe(ref => {
+    //     this.setMetaTags(ref);
+    //   });
+    // }
   }
 
   public isBrowser(): boolean {
