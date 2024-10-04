@@ -4,6 +4,10 @@
   "name": "boite-a-ref",
   "rewrites": [
     {
+      "source": "/assets/(.*)",
+      "destination": "/assets/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/api"
     }
