@@ -7,7 +7,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http'; // Import de provideHttpClient et withFetch
 
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
@@ -21,13 +21,9 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     provideStorage(() => getStorage()),
-    importProvidersFrom(
-      [
-        HttpClientModule,
-        HammerModule
-      ]
-    ),
+    provideHttpClient(withFetch()), // Remplace HttpClientModule avec provideHttpClient et withFetch
+    importProvidersFrom([HammerModule]),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-        provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore())
   ]
 };

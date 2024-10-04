@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { debounceTime, Subject } from 'rxjs';
 import { RefService } from '../../../../api/ref.service';
 import { Router } from '@angular/router';  // Importez Router
-import { NgFor, NgIf } from '@angular/common';
+import { isPlatformBrowser, NgFor, NgIf } from '@angular/common';
 import { Ref } from '../../../dashboard/models/ref';
 
 @Component({
@@ -21,14 +21,21 @@ export class SearchBarComponent implements OnInit {
   isDisplayMobileSearch = false;
   isSearching = false;
 
-  constructor(private refService: RefService, private router: Router) { }
+  constructor(private refService: RefService, private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit(): void {
-    this.searchSubject.pipe(
-      debounceTime(500) // Délai de 500ms avant de déclencher la recherche
-    ).subscribe(searchText => {
-      this.callSearch(searchText);
-    });
+    if (this.isPlateformBrowser()) {
+      this.searchSubject.pipe(
+        debounceTime(500) // Délai de 500ms avant de déclencher la recherche
+      ).subscribe(searchText => {
+        this.callSearch(searchText);
+      });
+    }
+  }
+
+  isPlateformBrowser(): boolean {
+    return isPlatformBrowser(this.platformId) && typeof window !== 'undefined';
   }
 
   onSearchInput(event: any): void {

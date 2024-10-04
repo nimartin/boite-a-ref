@@ -35,7 +35,7 @@ export class RefInfiniteScrollComponent {
   }
 
   ngOnInit(): void {
-    if (this.isBrowser) {
+    if (this.isBrowser && typeof window !== 'undefined') {
       this.loadMoreRefs();
       this.setMetaDatas();
     }
