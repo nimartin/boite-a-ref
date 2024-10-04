@@ -3,8 +3,6 @@ import { ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes } fro
 import { RefViewComponent } from './ref-view/ref-view.component';
 import { RefUploadComponent } from './ref-upload/ref-upload.component';
 import { RefInfiniteScrollComponent } from './ref-infinite-scroll/ref-infinite-scroll.component';
-import { RefService } from '../../api/ref.service';
-import { refResolver } from './ref.resolver';
 
 const routes: Routes = [
   {
@@ -18,8 +16,6 @@ const routes: Routes = [
   {
     path: ':id', // Route avec paramètre id
     component: RefViewComponent,
-    // return data from resolver
-    resolve: { ref: refResolver }
 
   }
 

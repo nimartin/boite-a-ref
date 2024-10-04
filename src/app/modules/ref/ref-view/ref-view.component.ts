@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Ref } from '../../dashboard/models/ref';
 import { AsyncPipe, isPlatformBrowser, NgIf } from '@angular/common';
 import { RefService } from '../../../api/ref.service';
 import { RefPlayerComponent } from '../ref-player/ref-player.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { map, Observable } from 'rxjs';
+import { Ref } from '../../dashboard/models/ref';
 
 @Component({
   selector: 'app-ref-view',
@@ -17,26 +17,27 @@ import { map, Observable } from 'rxjs';
 export class RefViewComponent  implements OnInit
 {
 
-  public ref$!: Observable<Ref>;
+  public ref!: Ref;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private meta: Meta,
     private title: Title,
+    private refService: RefService,
     @Inject(PLATFORM_ID) private platformId: Object) {}
 
 
 
   ngOnInit(): void {
-    // Assign ref$ so it's available during SSR
-    this.ref$ = this.activatedRoute.data.pipe(map(data => data['ref']));
+    this.refService.getRefById(this.activatedRoute.snapshot.params['id']).subscribe(ref => {
+      this.ref = ref;
+      //Only execute browser-specific code inside isBrowser()
+      if (this.isBrowser()) {
+        this.setMetaTags(this.ref);
+      }
+    });
 
-    // Only execute browser-specific code inside isBrowser()
-    if (this.isBrowser()) {
-      this.ref$.subscribe(ref => {
-        this.setMetaTags(ref);
-      });
-    }
+
   }
 
   public isBrowser(): boolean {

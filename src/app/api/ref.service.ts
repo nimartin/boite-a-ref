@@ -24,23 +24,24 @@ export class RefService {
     this.refTutoSubject.next(value);
   }
 
-    getRefById(refId: string): Observable<Ref> {
-      const refDoc = doc(this.firestore, `ref/${refId}`);
-      const docPromise = getDoc(refDoc);
-      return from(docPromise).pipe(
-        map(docSnapshot => {
-          if (docSnapshot.exists()) {
-            const data = docSnapshot.data() as Omit<Ref, 'id'>;
-            return { id: docSnapshot.id, ...data } as Ref;
-          } else {
-            throw new Error('Ref not found');
-          }
-        }),
-        catchError((error) => {
-          console.error('Error fetching ref by id:', error);
-          return throwError(() => new Error('Failed to fetch ref by id'));
-        })
-      );
+  getRefById(refId: string): Observable<Ref> {
+    // const refDoc = doc(this.firestore, `ref/${refId}`);
+    // const docPromise = getDoc(refDoc);
+    // return from(docPromise).pipe(
+    //   map(docSnapshot => {
+    //     if (docSnapshot.exists()) {
+    //       const data = docSnapshot.data() as Omit<Ref, 'id'>;
+    //       return { id: docSnapshot.id, ...data } as Ref;
+    //     } else {
+    //       throw new Error('Ref not found');
+    //     }
+    //   }),
+    //   catchError((error) => {
+    //     console.error('Error fetching ref by id:', error);
+    //     return throwError(() => new Error('Failed to fetch ref by id'));
+    //   })
+    // );
+    return this.algoliaService.getRefById(refId);
   }
 
 

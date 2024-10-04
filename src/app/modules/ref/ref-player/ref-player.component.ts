@@ -37,7 +37,7 @@ export class RefPlayerComponent implements OnChanges {
   }
 
   private updateRefData(): void {
-    if (this.ref) {
+    if (this.ref && this.isBrowser) {
       this.ref.tiktokVideoUrl = this.getTiktokVideoUrl();
       this.refService.updateViewCount(this.ref.id ?? '');
     }

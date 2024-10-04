@@ -38,6 +38,28 @@ export class AlgoliaService {
     );
   }
 
+  getRefById(refId: string): Observable<Ref> {
+    return from(this.index.search('', { filters: `objectID:${refId}` })).pipe(
+      map((result: any) => {
+        if (result.hits.length > 0) {
+          const hit = result.hits[0];
+          return {
+            id: hit.objectID,
+            title: hit.title,
+            memeAuthor: hit.memeAuthor,
+            memeRef: hit.memeRef,
+            tiktokVideoId: hit.tiktokVideoId,
+            tiktokVideoCite: hit.tiktokVideoCite,
+            tiktokVideoThumbnail: hit.tiktokVideoThumbnail,
+            tiktokVideoHtml: hit.tiktokVideoHtml,
+          } as Ref;
+        } else {
+          throw new Error('Ref not found');
+        }
+      })
+    );
+  }
+
   // Fonction de recherche avec filtres (par exemple, par date ou autre critère)
   searchWithFilters(query: string, filters: string, page: number = 0, hitsPerPage: number = 10): Observable<Ref[]> {
     return from(this.index.search(query, {
