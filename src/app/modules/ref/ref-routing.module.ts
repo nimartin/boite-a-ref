@@ -19,7 +19,7 @@ const routes: Routes = [
     path: ':id', // Route avec paramètre id
     component: RefViewComponent,
     // return data from resolver
-    // resolve: { ref: refResolver }
+    resolve: { ref: refResolver }
 
   }
 
