@@ -32,9 +32,11 @@ export class RefViewComponent  implements OnInit
     this.refService.getRefById(this.activatedRoute.snapshot.params['id']).subscribe(ref => {
       this.ref = ref;
       //Only execute browser-specific code inside isBrowser()
-      if (this.isBrowser()) {
-        this.setMetaTags(this.ref);
-      }
+
+      this.setMetaTags(this.ref);
+      // if (this.isBrowser()) {
+      //   this.setMetaTags(this.ref);
+      // }
     });
 
 
@@ -49,11 +51,13 @@ export class RefViewComponent  implements OnInit
     const title = 'J\'ai la ref - ' + ref?.title;
     const desc = 'Découvre la ref ' + ref?.title + ' !';
     this.title.setTitle(title);
-    this.meta.updateTag({ name: 'description', content: desc });
-    this.meta.updateTag({ property: 'og:title', content: title });
-    this.meta.updateTag({ property: 'og:description', content: desc });
-    this.meta.updateTag({ property: 'og:image', content: ref?.tiktokVideoThumbnail as string });
-    this.meta.updateTag({ property: 'og:url', content: window.location.href });
-    this.meta.updateTag({ property: 'og:type', content: 'article' });
+    this.meta.addTags(
+      [
+        { name: 'description', content: desc },
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: desc },
+        { property: 'og:image', content: ref?.tiktokVideoThumbnail as string },
+        { property: 'og:type', content: 'article' }
+      ]);
   }
 }
