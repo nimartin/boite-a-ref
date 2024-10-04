@@ -79,7 +79,7 @@ export class RefPlayerComponent implements OnChanges {
       element.classList.add('bg-primary');
     }, 2000);
 
-    const refLink = `${environment.serverUrl}/ref/${ref.id}`;
+    const refLink = `${environment.serverUrl}/refs/${ref.id}`;
     navigator.clipboard
       .writeText(refLink)
       .then(() => {
