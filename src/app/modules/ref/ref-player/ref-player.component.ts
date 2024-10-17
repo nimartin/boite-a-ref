@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges, ViewChild } from '@angular/core';
 import { Ref } from '../../dashboard/models/ref';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { RefService } from '../../../api/ref.service';
@@ -14,6 +14,8 @@ import { environment } from '../../../../environments/environment';
 })
 export class RefPlayerComponent implements OnChanges {
   @Input('ref') ref!: Ref;
+
+  @ViewChild('shareRefEl') shareRefEl!: ElementRef;
   public tiktokVideoUrl!: SafeUrl;
 
   isBrowser: boolean;
@@ -58,11 +60,11 @@ export class RefPlayerComponent implements OnChanges {
   }
 
   get params(): string {
-    return '?&music_info=1&description=1&loop=1';
+    return '?&rel=0&music_info=1&description=1&loop=1&closed_caption=0&native_context_menu=0&volume_control=0';
   }
 
   public shareRef(ref: Ref): void {
-    const element = document.getElementById('share-ref') as HTMLElement;
+    const element = this.shareRefEl.nativeElement as HTMLElement;
     const spanElement = element.querySelector('span');
     if (spanElement) {
       spanElement.innerText = 'Ref copiée ! 🎉';
@@ -79,6 +81,7 @@ export class RefPlayerComponent implements OnChanges {
       element.classList.add('bg-primary');
     }, 2000);
 
+    console.log()
     const refLink = `${environment.serverUrl}/refs/${ref.id}`;
     navigator.clipboard
       .writeText(refLink)

@@ -31,6 +31,7 @@ export class RefViewComponent  implements OnInit
   ngOnInit(): void {
     this.refService.getRefById(this.activatedRoute.snapshot.params['id']).subscribe(ref => {
       this.ref = ref;
+      console.log(this.ref);
       //Only execute browser-specific code inside isBrowser()
 
       this.setMetaTags(this.ref);

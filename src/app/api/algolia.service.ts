@@ -32,6 +32,9 @@ export class AlgoliaService {
             tiktokVideoCite: hit.tiktokVideoCite,
             tiktokVideoThumbnail: hit.tiktokVideoThumbnail,
             tiktokVideoHtml: hit.tiktokVideoHtml,
+            shareCount: hit.shareCount,
+            viewCount: hit.viewCount,
+            uploadAt: hit.uploadAt,
           } as Ref;
         });
       })
@@ -52,6 +55,9 @@ export class AlgoliaService {
             tiktokVideoCite: hit.tiktokVideoCite,
             tiktokVideoThumbnail: hit.tiktokVideoThumbnail,
             tiktokVideoHtml: hit.tiktokVideoHtml,
+            shareCount: hit.shareCount,
+            viewCount: hit.viewCount,
+            uploadAt: hit.uploadAt,
           } as Ref;
         } else {
           throw new Error('Ref not found');

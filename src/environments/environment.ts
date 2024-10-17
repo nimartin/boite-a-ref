@@ -11,5 +11,5 @@ export const environment = {
     appId: "BO8XNC7ZUR",
     adminKey: "5e25dcb50f2dacc622abacfb4a0bc360",
   },
-  serverUrl: "https://jai-la-ref.vercel.app/",
+  serverUrl: "https://jai-la-ref.vercel.app",
 };

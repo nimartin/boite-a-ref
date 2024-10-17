@@ -15,8 +15,10 @@ import { RefPlayerComponent } from '../ref-player/ref-player.component';
 export class RefInfiniteScrollComponent {
   refs: Ref[] = [];
   page = 0;
-  hitPerPage = 5;
+  hitPerPage = 3;
   currentIndex = 0;
+  videoPlayed: Array<number> = []
+
 
   @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef;
   @ViewChildren('refItem') refItems!: QueryList<ElementRef>;
@@ -82,7 +84,9 @@ export class RefInfiniteScrollComponent {
             // La ref est visible à plus de 50%
             this.pauseTiktok(this.currentIndex);
             this.currentIndex = index;
-            this.playTiktok(index);
+            if (this.videoPlayed.includes(this.currentIndex)) {
+              this.playTiktok(index);
+            }
             this.manageRefLoading();
           } else {
             // La ref n'est plus visible
@@ -139,13 +143,20 @@ export class RefInfiniteScrollComponent {
   }
 
   playTiktok(index: number): void {
-
     const iframe: HTMLIFrameElement | null =
       this.refItems.toArray()[index]?.nativeElement.querySelector('iframe');
     if (iframe && iframe.contentWindow) {
       iframe.contentWindow.postMessage({ type: 'seekTo', value: 0, "x-tiktok-player": true }, '*');
-      iframe.contentWindow.postMessage({ type: 'unMute', "x-tiktok-player": true }, '*');
       iframe.contentWindow.postMessage({ type: 'play', "x-tiktok-player": true }, '*');
+    }
+  }
+
+  //listen player message
+  @HostListener('window:message', ['$event'])
+  onMessage(event: MessageEvent) {
+
+    if (event.data.type === 'onStateChange' && event.data.value == '1') {
+      this.videoPlayed.push(this.currentIndex);
     }
   }
 

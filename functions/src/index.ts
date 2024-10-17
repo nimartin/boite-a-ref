@@ -38,3 +38,46 @@ exports.onRefDeleted = functions.firestore.document("ref/{refId}")
 
     await index.deleteObject(objectID);
   });
+
+
+// Fonction Cloud pour resynchroniser tous les documents
+exports.syncAllDataToAlgolia = functions.https.onRequest(async (req, res) => {
+  try {
+    const firestore = admin.firestore();
+    const batchSize = 1000;
+    const collectionRef = firestore.collection("ref");
+    let lastDocument = null;
+
+    let hasMoreDocuments = true;
+    while (hasMoreDocuments) {
+      let query = collectionRef.orderBy("__name__").limit(batchSize);
+      if (lastDocument) {
+        query = query.startAfter(lastDocument);
+      }
+
+      const snapshot = await query.get();
+
+      if (snapshot.empty) {
+        hasMoreDocuments = false;
+        break;
+      }
+
+      const objectsToIndex = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        return {
+          objectID: doc.id,
+          ...data,
+        };
+      });
+
+      await index.saveObjects(objectsToIndex);
+
+      lastDocument = snapshot.docs[snapshot.docs.length - 1];
+    }
+
+    res.status(200).send("Synchronisation réussie");
+  } catch (error) {
+    console.error("Erreur lors de la synchronisation :", error);
+    res.status(500).send("Erreur lors de la synchronisation");
+  }
+});
