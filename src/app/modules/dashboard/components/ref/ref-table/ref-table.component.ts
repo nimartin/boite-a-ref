@@ -22,7 +22,7 @@ export class RefTableComponent {
   }
 
   ngAfterViewInit() {
-    this.refService.getLastRefs(10).subscribe(refs => {
+    this.refService.searchRefsWithFilters('', '', 0, 20).subscribe(refs => {
       this.refs = refs;
     });
   }
