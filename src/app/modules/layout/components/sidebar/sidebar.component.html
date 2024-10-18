@@ -4,15 +4,14 @@
     <!-- Logo -->
     <div class="relative h-10">
 
-      <div class="flex items-center" *ngIf="menuService.showSideBar">
-        <a (click)="toggleSidebar()"
-          class="flex cursor-pointer items-center justify-center rounded  p-2 focus:outline-none focus:ring-1">
+      <div class="flex items-center" *ngIf="menuService.showSideBar" (click)="navigateToHome()">
+        <a class="flex cursor-pointer items-center justify-center rounded  p-2 focus:outline-none focus:ring-1">
           <img class="h-8 w-auto" src="assets/images/logo.png" alt="Logo">
-
+          <b class="ml-1 pl-2 text-base font-bold text-foreground">
+            J'ai la ref !
+          </b>
         </a>
-        <b class="ml-1 pl-2 text-base font-bold text-foreground">
-          J'ai la ref !
-        </b>
+
       </div>
       <!-- <button (click)="toggleSidebar()"
         class="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded text-muted-foreground/50 transition-all duration-200 focus:outline-none hover:text-muted-foreground"
@@ -32,14 +31,16 @@
 
   <div class="mx-4 my-4 space-y-1">
     <!-- Version -->
-    <a target="_blank" href="https://github.com/luciano-work/angular-tailwind"
+    <a target="_blank" href="https://www.instagram.com/dikayynm"
       class="group flex h-9 cursor-pointer items-center justify-start rounded p-2 hover:bg-card">
       <svg-icon src="assets/icons/heroicons/outline/information-circle.svg"
         [svgClass]="'h-5 w-5 text-muted-foreground/50'">
       </svg-icon>
 
-      <div class="ml-3 truncate text-[10px] font-semibold tracking-wide focus:outline-none">
+      <div
+        class="ml-3 flex gap-3 truncate text-[10px] font-semibold tracking-wide focus:outline-none text-muted-foreground/50">
         <span class="rounded-lg bg-primary/10 px-2 font-semibold text-primary">v1</span>
+        <span>Contacte moi !</span>
       </div>
 
       <div class="fixed w-full" *ngIf="!menuService.showSideBar">

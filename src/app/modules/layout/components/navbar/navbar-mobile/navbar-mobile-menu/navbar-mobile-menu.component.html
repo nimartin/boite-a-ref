@@ -22,9 +22,10 @@
 
         <!-- Workaround:: Enable routerLink -->
         <ng-template #parentMenu let-item="item">
-          <div (click)="closeMenu()" routerLink="{{ item.route }}"
+          <div (click)="closeMenu()" [routerLink]="item.externUrl ? null : item.route"
             class="flex h-9 cursor-pointer items-center justify-start rounded hover:bg-card">
-            <a routerLinkActive="text-primary"
+            <a routerLinkActive="text-primary" [attr.href]="item.externUrl ?  item.route : null"
+              [attr.target]="item.externUrl  ?  '_blank' : null"
               class="ml-10 truncate text-xs font-semibold tracking-wide focus:outline-none">
               {{ item.label }}
             </a>
@@ -46,9 +47,9 @@
           <svg-icon src="assets/icons/heroicons/solid/chevron-right.svg" [svgClass]="'h-5 w-5'"> </svg-icon>
         </button>
       </div>
-
       <!-- Submenu items -->
       <app-navbar-mobile-submenu [submenu]="item"></app-navbar-mobile-submenu>
+
     </li>
   </ul>
 </div>

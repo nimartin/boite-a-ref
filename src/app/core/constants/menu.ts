@@ -59,6 +59,12 @@ export class Menu {
           label: 'Upload',
           route: '/refs/upload',
         },
+        {
+          icon: 'assets/icons/heroicons/outline/information-circle.svg',
+          label: 'Contacte moi !',
+          route: 'https://www.instagram.com/dikayynm/',
+          externUrl: true,
+        }
         // {
         //   icon: 'assets/icons/heroicons/outline/gift.svg',
         //   label: 'Gift Card',

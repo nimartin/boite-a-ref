@@ -11,6 +11,6 @@ export interface Ref {
   tiktokVideoHtml: string;
   shareCount?: number;
   viewCount?: number;
-  uploadAt?: Date;
+  uploadAt?: Date | any;
   tiktokVideoUrl?: SafeUrl;
 }

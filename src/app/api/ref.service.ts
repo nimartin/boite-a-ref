@@ -66,6 +66,12 @@ export class RefService {
       map(response => {
         return response.docs.map(doc => {
           const data = doc.data() as Omit<Ref, 'id'>;
+          let uploadAtDate: Date | null = null;
+          if (data?.uploadAt instanceof Date) {
+            data.uploadAt = data.uploadAt;  // Déjà un objet Date
+          } else if (data?.uploadAt?.seconds) {
+            data.uploadAt = new Date(data.uploadAt.seconds * 1000);  // Cas d'un Timestamp
+          }
           return { id: doc.id, ...data } as Ref;
         });
       })
