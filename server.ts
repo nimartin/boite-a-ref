@@ -26,26 +26,12 @@ export function app(): express.Express {
 
   // Route pour générer le sitemap XML
   server.get('/sitemap.xml', (req, res) => {
-    const sitemap = `
-      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        <url>
-          <loc>http//localhost:4000/refs</loc>
-          <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>monthly</changefreq>
-          <priority>0.8</priority>
-        </url>
-        <url>
-          <loc>http//localhost:4000/</loc>
-          <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>daily</changefreq>
-          <priority>1.0</priority>
-        </url>
-        <!-- Ajoutez d'autres URL dynamiques ici -->
-      </urlset>
-    `;
-
-    res.header('Content-Type', 'application/xml');
-    res.send(sitemap);
+    const sitemapPath = resolve(browserDistFolder, 'assets/sitemap.xml');
+    res.sendFile(sitemapPath, (err) => {
+      if (err) {
+        res.status(500).send('Erreur lors de la récupération du sitemap.');
+      }
+    });
   });
 
   // All regular routes use the Angular engine
