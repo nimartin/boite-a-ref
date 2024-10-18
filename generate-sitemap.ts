@@ -17,7 +17,7 @@ const db = admin.firestore();
 // Fonction pour générer le sitemap
 async function generateSitemap() {
   try {
-    // Récupérer toutes les données depuis une collection (remplace 'your-collection' par ta collection)
+    // Récupérer toutes les données depuis une collection (remplace 'ref' par ta collection)
     const collectionRef = db.collection("ref");
     const snapshot = await collectionRef.get();
 
@@ -31,17 +31,45 @@ async function generateSitemap() {
     snapshot.forEach((doc: any) => {
       const docData = doc.data();
       data.push({
-        slug: doc.id || "", // Remplace 'slug' par le champ qui correspond à l'URL
-        updatedAt: docData['updatedAt'] || new Date().toISOString().split("T")[0], // Champ pour la date de mise à jour
+        slug: doc.id || "", // Utilise doc.id comme partie dynamique de l'URL
+        updatedAt: docData['updatedAt'] || new Date().toISOString().split("T")[0], // Date de mise à jour
       });
-
-      console.log(doc.id);
     });
+
+    // Routes statiques à ajouter en haut du sitemap
+    const staticUrls = [
+      {
+        loc: "/", // Page d'accueil
+        lastmod: new Date().toISOString().split("T")[0], // Date actuelle pour le 'lastmod'
+        changefreq: "daily",
+        priority: 1.0,
+      },
+      {
+        loc: "/refs", // Infinite scroll
+        lastmod: new Date().toISOString().split("T")[0],
+        changefreq: "weekly",
+        priority: 0.8,
+      },
+      {
+        loc: "/dashboard/refs", // Refs tendances
+        lastmod: new Date().toISOString().split("T")[0],
+        changefreq: "weekly",
+        priority: 0.8,
+      },
+    ];
 
     // Générer le sitemap XML
     const baseUrl = "https://jai-la-ref.com"; // Remplace par ton domaine
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${staticUrls.map(url => `
+    <url>
+      <loc>${baseUrl}${url.loc}</loc>
+      <lastmod>${url.lastmod}</lastmod>
+      <changefreq>${url.changefreq}</changefreq>
+      <priority>${url.priority}</priority>
+    </url>
+  `).join('')}
   ${data.map((item) => `
     <url>
       <loc>${baseUrl}/refs/${item.slug}</loc>

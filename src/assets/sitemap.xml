@@ -2,6 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+      <loc>https://jai-la-ref.com/</loc>
+      <lastmod>2024-10-18</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+    </url>
+  
+    <url>
+      <loc>https://jai-la-ref.com/refs</loc>
+      <lastmod>2024-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://jai-la-ref.com/dashboard/refs</loc>
+      <lastmod>2024-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+  
+    <url>
       <loc>https://jai-la-ref.com/refs/0cYTynWLVdXP1OpRYmk4</loc>
       <lastmod>2024-10-18</lastmod>
       <changefreq>weekly</changefreq>
