@@ -32,19 +32,14 @@ export class RefTutoComponent implements OnInit{
       img: '/assets/illustrations/tuto/step-1.svg'
     },
     {
-      title: 'Copie le lien de ta vidéo',
-      description: 'Pour l\'instant, on est seulement compatible avec <span class="font-bold text-primary">TikTok</span>.<br>Copie le lien de ta vidéo.<br><br>',
+      title: 'Ouvre la vidéo que tu veux ajouter',
+      description: 'Pour l\'instant, on est seulement compatible avec <span class="font-bold text-primary">TikTok</span>.<br><br><br>',
       img: '/assets/illustrations/tuto/step-2.svg'
 
     },
     {
-      title: 'Ouvre la vidéo dans ton navigateur',
-      description: 'Pour ajouter la vidéo on a besoin de la bonne URL.<br>Chrome / Safari / Firefox peu importe, <span class="font-bold text-primary">ouvre la vidéo dans ton navigateur.</span>',
-      img: '/assets/illustrations/tuto/step-3.svg'
-    },
-    {
-      title: 'Copie le nouveau lien',
-      description: 'L\'url a sûrement changé sous la forme : <em>https://www.tiktok.com/@username/video/123456789</em><br><span class="font-bold text-primary">Copie ce lien.</span>',
+      title: 'Copie le lien',
+      description: '<span class="font-bold text-primary">Copie l\'url</span>, exemple:<br> <em>https://www.tiktok.com/@username/video/123456789</em><br><em>https://vm.tiktok.com/abcd123/</em><br>',
       img: '/assets/illustrations/tuto/step-4.svg'
     },
     {

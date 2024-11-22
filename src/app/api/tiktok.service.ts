@@ -21,7 +21,7 @@ export class TikTokService {
           title: response.title,
           memeAuthor: response.author_name,
           memeRef: response.title, // Ou toute autre logique pour définir la référence
-          tiktokVideoId: this.extractVideoId(url),
+          tiktokVideoId: response.embed_product_id,
           tiktokVideoCite: url,
           tiktokVideoThumbnail: response.thumbnail_url,
           tiktokVideoHtml: response.html

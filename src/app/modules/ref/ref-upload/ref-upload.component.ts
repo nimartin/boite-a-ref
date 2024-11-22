@@ -105,6 +105,7 @@ export class RefUploadComponent {
     }
     this.refService.saveRef(this.ref).subscribe({
       next: (createdRef) => {
+        this.ref.id = createdRef.id;
         console.log('Ref saved successfully:', createdRef)
         setTimeout(() => {
           this.uploadState = UploadState.UPLOAD;
@@ -143,14 +144,14 @@ export class RefUploadComponent {
 
   modalPrimaryButtonAction(): void {
     if (this.uploadState === UploadState.UPLOAD) {
-      this.initForm();
+      this.router.navigate(['/refs', this.ref.id]);
     }
     this.uploadState = UploadState.EMPTY;
   }
 
   modalSecondaryButtonAction(): void {
     if (this.uploadState === UploadState.UPLOAD) {
-      this.router.navigate(['/dashboard/refs']);
+      this.initForm();
     } else {
       this.openTuto();
     }
@@ -182,11 +183,11 @@ export class RefUploadComponent {
   }
 
   get modalPrimaryButton(): string {
-    return this.uploadState === UploadState.UPLOAD ? 'Ajoute une autre ref !' : 'Essaye à nouveau !';
+    return this.uploadState === UploadState.UPLOAD ? 'Visionne ta ref !' : 'Essaye à nouveau !';
   }
 
   get modalSecondaryButton(): string {
-    return this.uploadState === UploadState.UPLOAD ? 'Retour à l\'accueil' : 'Visionne le tutoriel';
+    return this.uploadState === UploadState.UPLOAD ? 'Ajoute une autre ref !' : 'Visionne le tutoriel';
   }
 
   get showModal(): boolean {
